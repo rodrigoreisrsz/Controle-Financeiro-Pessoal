@@ -26,7 +26,7 @@ public class Registros {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor() {
         this.valor = valor;
     }
 
@@ -71,9 +71,8 @@ public class Registros {
     public void setData(String data) {
         this.data = data;
     }
-   // public void listarRegistros(){
 
-   // }
+
 }
 
 

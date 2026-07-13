@@ -48,11 +48,13 @@ public class RegistroManager {
             System.out.println("Erro ao salvar" + e.getMessage());
         }
     }
-    double total = 0;
-//    public void total(){
-//        for(Registros valor : registros){
-//            total += valor.getValor();
-//            System.out.println(total);
-//        }
-//    }
+
+    public void total(){
+        double total = 0;
+        for(Registros valor : registros){
+            total += valor.getValor();
+        }
+        total = total;
+        System.out.println(total);
+    }
 }

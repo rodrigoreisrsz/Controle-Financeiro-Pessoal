@@ -44,8 +44,9 @@ public class Main {
                     manager.deletarRegistro(idDelete);
                     System.out.println("Deletado com sucesso.");
                 case 4:
-                    System.out.println("total");
+                    System.out.println("Valor total dos registros: ");
                     manager.total();
+                    break;
 
                 case 0:
                     System.out.println("Fechando programa...");
