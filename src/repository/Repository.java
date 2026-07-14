@@ -16,6 +16,7 @@ public class Repository {
     private final Gson gson = new Gson();
 
     public void salvar(ArrayList<Registros> tasks) throws IOException {
+
         String json = gson.toJson(tasks);
         try (FileWriter writer = new FileWriter(ARQUIVO)) {
             writer.write(json);

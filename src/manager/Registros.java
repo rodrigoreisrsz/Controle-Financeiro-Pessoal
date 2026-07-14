@@ -6,7 +6,7 @@ public class Registros {
     private String nome;
     private double valor;
     public String descricao;
-    public String data;
+    public static String data;
 
 
     public Registros(String nome, double valor, String data, String descricao) {
@@ -26,19 +26,7 @@ public class Registros {
         return valor;
     }
 
-    public void setValor() {
-        this.valor = valor;
-    }
 
-
-//    public static void setContadorId(int contadorId) {
-//        this.contadorId = contadorId;
-//    }
-
-
-    public static int getContadorId() {
-        return contadorId;
-    }
 
     public static void setContadorId(int contadorId) {
         Registros.contadorId = contadorId;
@@ -64,7 +52,7 @@ public class Registros {
         this.descricao = descricao;
     }
 
-    public String getData() {
+    public static String getData() {
         return data;
     }
 

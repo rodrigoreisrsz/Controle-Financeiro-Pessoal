@@ -1,5 +1,4 @@
 package main;
-
 import manager.Menu;
 
 import java.util.Scanner;
@@ -26,18 +25,18 @@ public class Main {
 
                     System.out.println("Digite o valor do registro: ");
                     double valor = input.nextDouble();
+                    input.nextLine();
 
                     System.out.println("Digite a data do registro: ");
                     String data = input.nextLine();
 
-                    input.nextLine();
+
 
                     System.out.println("Digite a descrição do registro: ");
                     String descricao = input.nextLine();
 
                     manager.criarRegistro(nome, valor, data, descricao);
                     break;
-
                 case 3:
                     System.out.println("Digite o ID do registro que deseja deletar: ");
                     int idDelete = input.nextInt();
@@ -47,16 +46,16 @@ public class Main {
                     System.out.println("Valor total dos registros: ");
                     manager.total();
                     break;
-
+                case 5:
+                    System.out.println("Deletando todos os registros...");
+                    manager.deletarTodos();
+                    break;
                 case 0:
                     System.out.println("Fechando programa...");
             }
-
             if(opcao ==0){
                 break;
             }
-
         }
-
     }
 }
