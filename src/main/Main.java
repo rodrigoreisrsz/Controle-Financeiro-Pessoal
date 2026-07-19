@@ -27,13 +27,13 @@ public class Main {
                     double valor = input.nextDouble();
                     input.nextLine();
 
-                    System.out.println("Digite a data do registro: ");
-                    String data = input.nextLine();
-
-
 
                     System.out.println("Digite a descrição do registro: ");
                     String descricao = input.nextLine();
+
+                    System.out.println("Digite a data do registro: ");
+                    String data = input.nextLine();
+
 
                     manager.criarRegistro(nome, valor, data, descricao);
                     break;

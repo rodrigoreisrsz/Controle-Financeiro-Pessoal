@@ -2,11 +2,11 @@ package manager;
 
 public class Registros {
     private static int contadorId = 1;
-    private int id;
-    private String nome;
-    private double valor;
+    private final int id;
+    private final String nome;
+    private final double valor;
     public String descricao;
-    public static String data;
+    public String data;
 
 
     public Registros(String nome, double valor, String data, String descricao) {
@@ -36,28 +36,9 @@ public class Registros {
         return id;
     }
 
-    public String getNome() {
-        return nome;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public static String getData() {
+    public String getData(){
         return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
     }
 
 
