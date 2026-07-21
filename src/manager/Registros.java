@@ -1,5 +1,6 @@
 package manager;
 
+
 public class Registros {
     private static int contadorId = 1;
     private final int id;
@@ -7,19 +8,29 @@ public class Registros {
     private final double valor;
     public String descricao;
     public String data;
+    private Categoria categoria;
 
 
-    public Registros(String nome, double valor, String data, String descricao) {
-        this.id = contadorId++;
+    public Registros(int id, String nome, double valor, String descricao, String data) {
+        this.id = id;
         this.nome = nome;
-        this.data = data;
         this.valor = valor;
         this.descricao = descricao;
-
+        this.data = data;
     }
+
+    public Registros(String nome, double valor, String descricao, String data, Categoria categoria) {
+        this.id = contadorId++;
+        this.nome = nome;
+        this.valor = valor;
+        this.descricao = descricao;
+        this.data = data;
+        this.categoria = categoria;
+    }
+
     @Override
     public String toString(){
-        return "ID: " + id + "\nNome: " + nome + "\nValor: " + valor +  "\ndata: " + data + "\ndesc: " + descricao;
+        return "ID: " + id + "\nNome: " + nome + "\nValor: " + valor +  "\ndata: " + data + "\ndesc: " + descricao + "\nCategoria: " + categoria;
     }
 
     public double getValor() {
@@ -37,11 +48,13 @@ public class Registros {
     }
 
 
-    public String getData(){
-        return data;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }
 
 

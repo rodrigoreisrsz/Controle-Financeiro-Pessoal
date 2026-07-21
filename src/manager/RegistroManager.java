@@ -4,7 +4,6 @@ import repository.Repository;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class RegistroManager {
 
@@ -24,8 +23,8 @@ public class RegistroManager {
             if (registros.getId() > maiorId) {
                 maiorId = registros.getId();
             }
-            Registros.setContadorId(maiorId + 1);
         }
+        Registros.setContadorId(maiorId + 1);
     }
     public void listarRegistros(){
         if(registros.isEmpty()){
@@ -36,8 +35,8 @@ public class RegistroManager {
         }
 
     }
-    public void criarRegistro(String nome, double valor, String descricao, String data ){
-        Registros registros = new Registros(nome, valor, descricao, data);
+    public void criarRegistro(String nome, double valor, String descricao, String data, Categoria categoria ){
+        Registros registros = new Registros(nome, valor, descricao, data, categoria);
         this.registros.add(registros);
         try {
             repository.salvar(this.registros);
