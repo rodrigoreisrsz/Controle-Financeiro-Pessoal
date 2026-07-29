@@ -2,10 +2,11 @@ package main;
 import manager.Categoria;
 import manager.Menu;
 
+import java.io.IOException;
 import java.util.Scanner;
 import manager.RegistroManager;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
         RegistroManager manager = new RegistroManager();
         Menu menu = new Menu();

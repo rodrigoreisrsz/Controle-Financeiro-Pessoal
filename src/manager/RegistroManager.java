@@ -26,38 +26,38 @@ public class RegistroManager {
         }
         Registros.setContadorId(maiorId + 1);
     }
-    public void listarRegistros(){
+    public void listarRegistros() throws IOException {
         if(registros.isEmpty()){
-            System.out.println("Não há nenhum registro");
+            throw new IOException("Não há nenhum registro");
         }
         for(Registros registro : registros){
             System.out.println(registro);
         }
 
     }
-    public void criarRegistro(String nome, double valor, String descricao, String data, Categoria categoria ){
+    public void criarRegistro(String nome, double valor, String descricao, String data, Categoria categoria ) throws IOException{
         Registros registros = new Registros(nome, valor, descricao, data, categoria);
         this.registros.add(registros);
         try {
             repository.salvar(this.registros);
         } catch (IOException e) {
-            System.out.println("Erro ao salvar" + e.getMessage());
+            throw new IOException("Erro ao salvar" + e.getMessage());
         }
     }
-    public void deletarRegistro(int id){
+    public void deletarRegistro(int id) throws IOException{
         registros.removeIf(registros -> registros.getId() == id);
         try {
             repository.salvar(registros);
         } catch (IOException e) {
-            System.out.println("Erro ao salvar" + e.getMessage());
+            throw new IOException("Erro ao salvar" + e.getMessage());
         }
     }
-    public void deletarTodos(){
+    public void deletarTodos() throws IOException{
         registros.clear();
         try {
             repository.salvar(registros);
         } catch (IOException e) {
-            System.out.println("Erro ao salvar" + e.getMessage());
+            throw new IOException("Erro ao salvar" + e.getMessage());
         }
     }
 
