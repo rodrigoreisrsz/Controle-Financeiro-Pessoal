@@ -3,6 +3,7 @@ package manager;
 import repository.Repository;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class RegistroManager {
@@ -26,13 +27,14 @@ public class RegistroManager {
         }
         Registros.setContadorId(maiorId + 1);
     }
-    public void listarRegistros() throws IOException {
+    public void listarRegistros() {
         if(registros.isEmpty()){
-            throw new IOException("Não há nenhum registro");
+            System.out.println("Não há nenhum registro");
         }
         for(Registros registro : registros){
             System.out.println(registro);
         }
+
 
     }
     public void criarRegistro(String nome, double valor, String descricao, String data, Categoria categoria ) throws IOException{
@@ -45,6 +47,9 @@ public class RegistroManager {
         }
     }
     public void deletarRegistro(int id) throws IOException{
+        if(registros.isEmpty()){
+            throw new IOException("Não há registros.");
+        }
         registros.removeIf(registros -> registros.getId() == id);
         try {
             repository.salvar(registros);
@@ -53,6 +58,9 @@ public class RegistroManager {
         }
     }
     public void deletarTodos() throws IOException{
+        if(registros.isEmpty()){
+            throw new IOException("Não há registros.");
+        }
         registros.clear();
         try {
             repository.salvar(registros);

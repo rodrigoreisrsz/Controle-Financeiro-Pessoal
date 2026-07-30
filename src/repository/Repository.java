@@ -21,7 +21,7 @@ public class Repository {
         try (FileWriter writer = new FileWriter(ARQUIVO)) {
             writer.write(json);
         } catch (IOException e) {
-            System.out.println("Erro ao salvar: " + e.getMessage());
+            throw new IOException("Erro ao salvar: " + e.getMessage());
         }
     }
 
