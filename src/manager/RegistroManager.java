@@ -39,6 +39,7 @@ public class RegistroManager {
     }
     public void criarRegistro(String nome, double valor, String descricao, String data, Categoria categoria ) throws IOException{
         Registros registros = new Registros(nome, valor, descricao, data, categoria);
+
         this.registros.add(registros);
         try {
             repository.salvar(this.registros);
