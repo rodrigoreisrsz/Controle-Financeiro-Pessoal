@@ -18,12 +18,11 @@ public class Main {
 
         while (true) {
             menu.mostrar();
-            int opcao;
+
             try {
-                opcao = input.nextInt();
+                int opcao = input.nextInt();
                 switch (opcao) {
                     case 1:
-                        System.out.println("Lista de todos os registros:");
                         manager.listarRegistros();
                         break;
                     case 2:
@@ -52,6 +51,7 @@ public class Main {
                         manager.deletarRegistro(idDelete);
                         System.out.println("Deletado com sucesso.");
                         break;
+
                     case 4:
                         System.out.println("Valor total dos registros: ");
                         manager.total();
@@ -65,7 +65,7 @@ public class Main {
                         break;
 
                     default:
-                        throw new OpcaoInvalidaException("Opcao inválida");
+                        throw new OpcaoInvalidaException("Erro: Opcao inválida");
 
                 }
                 if (opcao == 0) {
@@ -76,7 +76,7 @@ public class Main {
                 System.out.println(e.getMessage());
             } catch (InputMismatchException e) {
                 System.out.println("Erro: Digite apenas números inteiros.");
-                input.nextLine();
+
             }
 
         }

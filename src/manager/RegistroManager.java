@@ -28,11 +28,14 @@ public class RegistroManager {
         Registros.setContadorId(maiorId + 1);
     }
     public void listarRegistros() {
+
         if(registros.isEmpty()){
             System.out.println("Não há nenhum registro");
-        }
-        for(Registros registro : registros){
-            System.out.println(registro);
+        }else{
+            System.out.println("Lista de todos os registros: ");
+            for(Registros registro : registros){
+                System.out.println(registro);
+            }
         }
 
 
