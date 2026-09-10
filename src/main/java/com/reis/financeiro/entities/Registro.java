@@ -4,12 +4,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.math.BigDecimal;
+
 @Entity
 public class Registro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    private BigDecimal valor;
     private String descricao;
     private String data;
     private TipoRegistroDTO tipoRegistro;
@@ -17,9 +20,10 @@ public class Registro {
     public Registro(){
 
     }
-    public Registro(String nome, String data, String descricao, TipoRegistroDTO tipoRegistro){
+    public Registro(String nome, String data, BigDecimal valor, String descricao, TipoRegistroDTO tipoRegistro){
         this.nome = nome;
         this.data = data;
+        this.valor = valor;
         this.descricao = descricao;
         this.tipoRegistro = tipoRegistro;
     }
@@ -73,5 +77,13 @@ public class Registro {
 
     public void setTipoRegistro(TipoRegistroDTO tipoRegistro) {
         this.tipoRegistro = tipoRegistro;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 }

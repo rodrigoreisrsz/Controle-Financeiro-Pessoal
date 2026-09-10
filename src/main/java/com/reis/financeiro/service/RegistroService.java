@@ -6,6 +6,7 @@ import com.reis.financeiro.repository.RegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -21,8 +22,8 @@ public class RegistroService {
         return repository.findAll();
     }
 
-    public Registro adicionarRegistro(String nome, String descricao, String data, TipoRegistroDTO tipoRegistro){
-        Registro registro = new Registro(nome, data, descricao, tipoRegistro);
+    public Registro adicionarRegistro(String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
+        Registro registro = new Registro(nome, data, valor, descricao, tipoRegistro);
         return repository.save(registro);
     }
 
@@ -34,4 +35,6 @@ public class RegistroService {
         Registro registro = repository.findById(id).get();
         return registro;
     }
+
+
 }

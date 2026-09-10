@@ -2,11 +2,16 @@ package com.reis.financeiro.dto;
 
 import com.reis.financeiro.entities.TipoRegistroDTO;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
+import java.math.BigDecimal;
 
 public class RegistroCreateDTO {
     @NotBlank
     private String nome;
     private String data;
+    @Positive
+    private BigDecimal valor;
     private String descricao;
     private TipoRegistroDTO tipoRegistro;
 
@@ -40,5 +45,13 @@ public class RegistroCreateDTO {
 
     public void setTipoRegistro(TipoRegistroDTO tipoRegistro) {
         this.tipoRegistro = tipoRegistro;
+    }
+
+    public TipoRegistroDTO getValor() {
+        return tipoRegistro;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
     }
 }

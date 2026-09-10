@@ -28,8 +28,8 @@ public class RegistroController {
         return service.buscarPorId(id);
     }
     @PostMapping
-    public Registro criar(@RequestBody @Valid RegistroCreateDTO registroCreateDTO){
-        return service.adicionarRegistro(registroCreateDTO.getNome(), registroCreateDTO.getDescricao(), registroCreateDTO.getData(), registroCreateDTO.getTipoRegistro());
+    public Registro criar(@RequestBody @Valid RegistroCreateDTO registroCreate){
+        return service.adicionarRegistro(registroCreate.getNome(),registroCreate.getDescricao(), registroCreate.getData(), registroCreate.getTipoRegistro(), registroCreate.getValor());
     }
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable int id){
