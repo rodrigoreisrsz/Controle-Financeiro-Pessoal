@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler(RegistroNotFoundException.class)
-    public ResponseEntity<String> registroNotFound(NoSuchElementException e) {
+    public ResponseEntity<String> registroNotFound(RegistroNotFoundException e) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encontrado.");
     }
 }

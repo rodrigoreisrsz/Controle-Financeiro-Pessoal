@@ -2,6 +2,7 @@ package com.reis.financeiro.service;
 
 import com.reis.financeiro.entities.Registro;
 import com.reis.financeiro.entities.TipoRegistroDTO;
+import com.reis.financeiro.exceptions.RegistroNotFoundException;
 import com.reis.financeiro.repository.RegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ import java.util.List;
 
         }
         public Registro buscarPorId(int id){
-            Registro registro = repository.findById(id).get();
+            Registro registro = repository.findById(id).orElseThrow(()-> new RegistroNotFoundException());
             return registro;
         }
 
