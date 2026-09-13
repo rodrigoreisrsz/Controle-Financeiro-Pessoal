@@ -9,32 +9,35 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Service
-public class RegistroService {
-    private final RegistroRepository repository;
+    @Service
+    public class RegistroService {
+        private final RegistroRepository repository;
+        private final SaldoService saldoService;
 
-    @Autowired
-    public RegistroService(RegistroRepository repository){
-        this.repository =repository;
-    }
+        @Autowired
+        public RegistroService(RegistroRepository repository, SaldoService saldoService){
+            this.repository = repository;
+            this.saldoService = saldoService;
+        }
 
-    public List<Registro> listarRegistros(){
-        return repository.findAll();
-    }
+        public List<Registro> listarRegistros(){
+            return repository.findAll();
+        }
 
-    public Registro adicionarRegistro(String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
-        Registro registro = new Registro(nome, data, valor, descricao, tipoRegistro);
-        return repository.save(registro);
-    }
+        public Registro adicionarRegistro(String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
+            Registro registro = new Registro(nome, data, valor, descricao, tipoRegistro);
+            saldoService.atualizarSaldo(valor, tipoRegistro);
+            return repository.save(registro);
+        }
 
-    public void deletarRegistro(int id){
-        repository.deleteById(id);
+        public void deletarRegistro(int id){
+            repository.deleteById(id);
 
-    }
-    public Registro buscarPorId(int id){
-        Registro registro = repository.findById(id).get();
-        return registro;
-    }
+        }
+        public Registro buscarPorId(int id){
+            Registro registro = repository.findById(id).get();
+            return registro;
+        }
 
 
 }
