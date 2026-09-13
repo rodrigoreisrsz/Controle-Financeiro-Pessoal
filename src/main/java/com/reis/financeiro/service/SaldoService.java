@@ -19,7 +19,7 @@ public class SaldoService {
         this.repository = repository;
     }
 
-    private Saldo buscaOuCriaSaldo(){
+    public Saldo buscaOuCriaSaldo(){
         List<Saldo> saldos = repository.findAll();
         if(saldos.isEmpty()){
             Saldo novoSaldo = new Saldo();

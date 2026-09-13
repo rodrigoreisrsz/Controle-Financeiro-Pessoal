@@ -47,8 +47,8 @@ public class RegistroCreateDTO {
         this.tipoRegistro = tipoRegistro;
     }
 
-    public TipoRegistroDTO getValor() {
-        return tipoRegistro;
+    public BigDecimal getValor() {
+        return valor;
     }
 
     public void setValor(BigDecimal valor) {

@@ -32,7 +32,12 @@ import java.util.List;
         }
 
         public void deletarRegistro(int id){
-            repository.deleteById(id);
+            Registro registro = buscarPorId(id);
+
+            TipoRegistroDTO tipoInvertido = (registro.getTipoRegistro() == TipoRegistroDTO.GANHO) ? TipoRegistroDTO.GASTO : TipoRegistroDTO.GANHO;
+
+            saldoService.atualizarSaldo(registro.getValor(), tipoInvertido);
+            repository.delete(registro);
 
         }
         public Registro buscarPorId(int id){
