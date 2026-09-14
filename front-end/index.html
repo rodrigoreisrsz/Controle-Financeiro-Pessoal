@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finanças Pessoais</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard">
+
+    <header class="dashboard__header">
+      <div>
+        <p class="dashboard__month">Setembro 2026</p>
+        <h1 class="dashboard__title">Finanças Pessoais</h1>
+      </div>
+      <button class="btn-primary" id="btnNovoRegistro">
+        <span class="btn-primary__icon">+</span> Novo registro
+      </button>
+    </header>
+
+    <section class="card card--saldo">
+      <div class="saldo-principal">
+        <p class="card__label">Saldo total</p>
+        <p class="saldo-principal__valor" id="saldoTotal">R$ 0,00</p>
+      </div>
+      <div class="saldo-secundario">
+        <div class="saldo-secundario__item">
+          <p class="card__label">Entradas</p>
+          <p class="valor valor--entrada" id="totalEntradas">R$ 0,00</p>
+        </div>
+        <div class="saldo-secundario__divisor"></div>
+        <div class="saldo-secundario__item">
+          <p class="card__label">Saídas</p>
+          <p class="valor valor--saida" id="totalSaidas">R$ 0,00</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card card--progresso">
+      <div class="progresso__legendas">
+        <span>Entradas</span>
+        <span>Saídas</span>
+      </div>
+      <div class="progresso__barra">
+        <div class="progresso__preenchido" id="progressoBarra"></div>
+      </div>
+      <div class="progresso__percentuais">
+        <span id="percentEntradas">0%</span>
+        <span id="percentSaidas">0%</span>
+      </div>
+    </section>
+
+    <section class="card card--lista">
+      <nav class="tabs" id="tabs">
+        <button class="tab tab--ativa" data-filtro="todos">Todos</button>
+        <button class="tab" data-filtro="entrada">Entradas</button>
+        <button class="tab" data-filtro="saida">Saídas</button>
+      </nav>
+
+      <ul class="lista-transacoes" id="listaTransacoes">
+        <!-- itens gerados dinamicamente via script.js -->
+      </ul>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+:root {
+  --bg: #0c0c10;
+  --bg-card: #16161c;
+  --border: #232330;
+  --text-primary: #f2f2f5;
+  --text-muted: #7c7c8a;
+  --roxo: #a78bfa;
+  --roxo-forte: #8b5cf6;
+  --vermelho: #f87171;
+  --radius: 16px;
+  --font-mono: 'Courier New', Courier, monospace;
+  --font-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-base);
+  min-height: 100vh;
+}
+
+.dashboard {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header */
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.dashboard__month {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.dashboard__title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background: var(--roxo-forte);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: #7c4feb;
+}
+
+.btn-primary__icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Cards genéricos */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+.card__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* Card de saldo */
+.card--saldo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.saldo-principal__valor {
+  font-family: var(--font-mono);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--roxo);
+  letter-spacing: 1px;
+}
+
+.saldo-secundario {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.saldo-secundario__divisor {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+.valor {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.valor--entrada {
+  color: var(--roxo);
+}
+
+.valor--saida {
+  color: var(--vermelho);
+}
+
+/* Card de progresso */
+.progresso__legendas,
+.progresso__percentuais {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.progresso__legendas {
+  margin-bottom: 12px;
+}
+
+.progresso__percentuais {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+}
+
+.progresso__barra {
+  width: 100%;
+  height: 8px;
+  background: #2a2a35;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progresso__preenchido {
+  height: 100%;
+  background: var(--roxo-forte);
+  border-radius: 999px 0 0 999px;
+  transition: width 0.4s ease;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 16px 4px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.tab:hover {
+  color: var(--text-primary);
+}
+
+.tab--ativa {
+  color: var(--text-primary);
+  border-bottom-color: var(--roxo-forte);
+}
+
+/* Lista de transações */
+.lista-transacoes {
+  list-style: none;
+}
+
+.transacao {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.transacao:last-child {
+  border-bottom: none;
+}
+
+.transacao__marcador {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.transacao__marcador--entrada {
+  background: var(--roxo);
+}
+
+.transacao__marcador--saida {
+  background: var(--vermelho);
+}
+
+.transacao__info {
+  flex: 1;
+}
+
+.transacao__nome {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.transacao__meta {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.transacao__valor {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .dashboard__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .card--saldo {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .saldo-principal__valor {
+    font-size: 32px;
+  }
+}
