@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080";
+const API_URL = "";
 
 // Dados de exemplo — usados como fallback caso a API não esteja no ar
 let transacoes = [
