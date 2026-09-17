@@ -7,64 +7,107 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="dashboard">
+<div class="dashboard">
 
-    <header class="dashboard__header">
-      <div>
-        <p class="dashboard__month">Setembro 2026</p>
-        <h1 class="dashboard__title">Finanças Pessoais</h1>
-      </div>
-      <button class="btn-primary" id="btnNovoRegistro">
-        <span class="btn-primary__icon">+</span> Novo registro
-      </button>
-    </header>
+  <header class="dashboard__header">
+    <div>
+      <p class="dashboard__month">Setembro 2026</p>
+      <h1 class="dashboard__title">Finanças Pessoais</h1>
+    </div>
+    <button class="btn-primary" id="btnNovoRegistro">
+      <span class="btn-primary__icon">+</span> Novo registro
+    </button>
+  </header>
 
-    <section class="card card--saldo">
-      <div class="saldo-principal">
-        <p class="card__label">Saldo total</p>
-        <p class="saldo-principal__valor" id="saldoTotal">R$ 0,00</p>
+  <section class="card card--saldo">
+    <div class="saldo-principal">
+      <p class="card__label">Saldo total</p>
+      <p class="saldo-principal__valor" id="saldoTotal">R$ 0,00</p>
+    </div>
+    <div class="saldo-secundario">
+      <div class="saldo-secundario__item">
+        <p class="card__label">Entradas</p>
+        <p class="valor valor--entrada" id="totalEntradas">R$ 0,00</p>
       </div>
-      <div class="saldo-secundario">
-        <div class="saldo-secundario__item">
-          <p class="card__label">Entradas</p>
-          <p class="valor valor--entrada" id="totalEntradas">R$ 0,00</p>
-        </div>
-        <div class="saldo-secundario__divisor"></div>
-        <div class="saldo-secundario__item">
-          <p class="card__label">Saídas</p>
-          <p class="valor valor--saida" id="totalSaidas">R$ 0,00</p>
-        </div>
+      <div class="saldo-secundario__divisor"></div>
+      <div class="saldo-secundario__item">
+        <p class="card__label">Saídas</p>
+        <p class="valor valor--saida" id="totalSaidas">R$ 0,00</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="card card--progresso">
-      <div class="progresso__legendas">
-        <span>Entradas</span>
-        <span>Saídas</span>
-      </div>
-      <div class="progresso__barra">
-        <div class="progresso__preenchido" id="progressoBarra"></div>
-      </div>
-      <div class="progresso__percentuais">
-        <span id="percentEntradas">0%</span>
-        <span id="percentSaidas">0%</span>
-      </div>
-    </section>
+  <section class="card card--progresso">
+    <div class="progresso__legendas">
+      <span>Entradas</span>
+      <span>Saídas</span>
+    </div>
+    <div class="progresso__barra">
+      <div class="progresso__preenchido" id="progressoBarra"></div>
+    </div>
+    <div class="progresso__percentuais">
+      <span id="percentEntradas">0%</span>
+      <span id="percentSaidas">0%</span>
+    </div>
+  </section>
 
-    <section class="card card--lista">
-      <nav class="tabs" id="tabs">
-        <button class="tab tab--ativa" data-filtro="todos">Todos</button>
-        <button class="tab" data-filtro="entrada">Entradas</button>
-        <button class="tab" data-filtro="saida">Saídas</button>
-      </nav>
+  <section class="card card--lista">
+    <nav class="tabs" id="tabs">
+      <button class="tab tab--ativa" data-filtro="todos">Todos</button>
+      <button class="tab" data-filtro="entrada">Entradas</button>
+      <button class="tab" data-filtro="saida">Saídas</button>
+    </nav>
 
-      <ul class="lista-transacoes" id="listaTransacoes">
-        <!-- itens gerados dinamicamente via script.js -->
-      </ul>
-    </section>
+    <ul class="lista-transacoes" id="listaTransacoes">
+      <!-- itens gerados dinamicamente via script.js -->
+    </ul>
+  </section>
 
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal__header">
+      <h2>Novo registro</h2>
+      <button class="modal__fechar" id="btnFecharModal">&times;</button>
+    </div>
+
+    <form id="formRegistro" class="modal__form">
+      <label class="campo">
+        <span>Nome</span>
+        <input type="text" id="campoNome" required>
+      </label>
+
+      <label class="campo">
+        <span>Valor</span>
+        <input type="number" id="campoValor" min="0" step="0.01" required>
+      </label>
+
+      <label class="campo">
+        <span>Data</span>
+        <input type="date" id="campoData" required>
+      </label>
+
+      <label class="campo">
+        <span>Descrição</span>
+        <input type="text" id="campoDescricao">
+      </label>
+
+      <label class="campo">
+        <span>Tipo</span>
+        <select id="campoTipo" required>
+          <option value="GANHO">Entrada (ganho)</option>
+          <option value="GASTO">Saída (gasto)</option>
+        </select>
+      </label>
+
+      <p class="modal__erro" id="modalErro"></p>
+
+      <button type="submit" class="btn-primary modal__submit">Salvar</button>
+    </form>
   </div>
+</div>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

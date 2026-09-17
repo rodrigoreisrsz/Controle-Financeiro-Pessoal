@@ -1,5 +1,7 @@
-// Dados de exemplo — depois isso vai vir da sua API (GET /registros)
-const transacoes = [
+const API_URL = "http://localhost:8080";
+
+// Dados de exemplo — usados como fallback caso a API não esteja no ar
+let transacoes = [
   { nome: "Dividendos", categoria: "Investimentos", data: "2026-09-14", valor: 340, tipo: "entrada" },
   { nome: "Uber", categoria: "Transporte", data: "2026-09-12", valor: 87, tipo: "saida" },
   { nome: "Netflix + Spotify", categoria: "Assinaturas", data: "2026-09-10", valor: 65, tipo: "saida" },
@@ -20,12 +22,12 @@ function formatarData(dataISO) {
 
 function calcularTotais(lista) {
   const entradas = lista
-    .filter(t => t.tipo === "entrada")
-    .reduce((soma, t) => soma + t.valor, 0);
+      .filter(t => t.tipo === "entrada")
+      .reduce((soma, t) => soma + t.valor, 0);
 
   const saidas = lista
-    .filter(t => t.tipo === "saida")
-    .reduce((soma, t) => soma + t.valor, 0);
+      .filter(t => t.tipo === "saida")
+      .reduce((soma, t) => soma + t.valor, 0);
 
   return { entradas, saidas, saldo: entradas - saidas };
 }
@@ -51,7 +53,7 @@ function renderLista() {
   container.innerHTML = "";
 
   const listaFiltrada = transacoes.filter(t =>
-    filtroAtual === "todos" ? true : t.tipo === filtroAtual
+      filtroAtual === "todos" ? true : t.tipo === filtroAtual
   );
 
   listaFiltrada.forEach(t => {
@@ -61,8 +63,8 @@ function renderLista() {
     const sinal = t.tipo === "entrada" ? "+" : "-";
     const classeValor = t.tipo === "entrada" ? "valor--entrada" : "valor--saida";
     const classeMarcador = t.tipo === "entrada"
-      ? "transacao__marcador--entrada"
-      : "transacao__marcador--saida";
+        ? "transacao__marcador--entrada"
+        : "transacao__marcador--saida";
 
     item.innerHTML = `
       <span class="transacao__marcador ${classeMarcador}"></span>
@@ -90,10 +92,94 @@ function configurarTabs() {
   });
 }
 
-function init() {
+// Converte o formato do backend (tipoRegistro: "GANHO"/"GASTO") pro formato usado na tela ("entrada"/"saida")
+function mapearRegistroBackend(registro) {
+  return {
+    nome: registro.nome,
+    categoria: registro.descricao || "Sem categoria",
+    data: registro.data,
+    valor: registro.valor,
+    tipo: registro.tipoRegistro === "GANHO" ? "entrada" : "saida",
+  };
+}
+
+async function carregarRegistros() {
+  try {
+    const resposta = await fetch(`${API_URL}/registros`);
+    if (!resposta.ok) throw new Error("Falha ao buscar registros");
+    const dados = await resposta.json();
+    transacoes = dados.map(mapearRegistroBackend);
+  } catch (erro) {
+    console.warn("Não foi possível carregar da API, usando dados de exemplo.", erro);
+  }
   renderResumo();
   renderLista();
+}
+
+function abrirModal() {
+  document.getElementById("modalOverlay").classList.add("modal-overlay--aberto");
+}
+
+function fecharModal() {
+  document.getElementById("modalOverlay").classList.remove("modal-overlay--aberto");
+  document.getElementById("formRegistro").reset();
+  esconderErro();
+}
+
+function mostrarErro(mensagem) {
+  const erro = document.getElementById("modalErro");
+  erro.textContent = mensagem;
+  erro.classList.add("modal__erro--visivel");
+}
+
+function esconderErro() {
+  const erro = document.getElementById("modalErro");
+  erro.classList.remove("modal__erro--visivel");
+}
+
+async function enviarNovoRegistro(event) {
+  event.preventDefault();
+  esconderErro();
+
+  const novoRegistro = {
+    nome: document.getElementById("campoNome").value,
+    valor: parseFloat(document.getElementById("campoValor").value),
+    data: document.getElementById("campoData").value,
+    descricao: document.getElementById("campoDescricao").value,
+    tipoRegistro: document.getElementById("campoTipo").value,
+  };
+
+  try {
+    const resposta = await fetch(`${API_URL}/registros`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(novoRegistro),
+    });
+
+    if (!resposta.ok) {
+      throw new Error("A API recusou o registro (verifique os dados enviados).");
+    }
+
+    fecharModal();
+    await carregarRegistros();
+  } catch (erro) {
+    mostrarErro(erro.message);
+  }
+}
+
+function configurarModal() {
+  document.getElementById("btnNovoRegistro").addEventListener("click", abrirModal);
+  document.getElementById("btnFecharModal").addEventListener("click", fecharModal);
+  document.getElementById("modalOverlay").addEventListener("click", (event) => {
+    if (event.target.id === "modalOverlay") fecharModal();
+  });
+  document.getElementById("formRegistro").addEventListener("submit", enviarNovoRegistro);
+}
+
+function init() {
+  carregarRegistros();
   configurarTabs();
+  configurarModal();
 }
 
 init();
