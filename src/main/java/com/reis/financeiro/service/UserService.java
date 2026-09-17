@@ -17,8 +17,8 @@ public class UserService {
         this.registroService = registroService;
     }
 
-    public User cadastrar(String name, String password){
-        User user = new User(name, password);
+    public User cadastrar(Long id, String name, String password){
+        User user = new User(id, name, password);
         return userRepository.save(user);
     }
 
