@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Finanças Pessoais</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="login-page">
+    <div class="login-card">
+        <p class="dashboard__month">Finanças Pessoais</p>
+        <h1 class="login-card__titulo">Entrar</h1>
+
+        <form id="formLogin" class="modal__form">
+            <label class="campo">
+                <span>Usuário</span>
+                <input type="text" id="loginNome" required autocomplete="username">
+            </label>
+
+            <label class="campo">
+                <span>Senha</span>
+                <input type="password" id="loginSenha" required autocomplete="current-password">
+            </label>
+
+            <p class="modal__erro" id="loginErro"></p>
+
+            <button type="submit" class="btn-primary modal__submit">Entrar</button>
+        </form>
+
+        <p class="login-card__rodape">
+            Ainda não tem conta? <a href="#" id="linkCadastro">Cadastre-se</a>
+        </p>
+    </div>
+</div>
+
+<script src="login.js"></script>
+</body>
+</html>

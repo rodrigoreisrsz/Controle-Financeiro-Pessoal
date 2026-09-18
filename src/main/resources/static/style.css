@@ -6,6 +6,8 @@
   --text-muted: #7c7c8a;
   --roxo: #a78bfa;
   --roxo-forte: #8b5cf6;
+  --verde: #4ade80;
+  --verde-forte: #22c55e;
   --vermelho: #f87171;
   --radius: 16px;
   --font-mono: 'Courier New', Courier, monospace;
@@ -56,7 +58,7 @@ body {
 }
 
 .btn-primary {
-  background: var(--roxo-forte);
+  background: linear-gradient(135deg, var(--roxo-forte), var(--verde-forte));
   color: #fff;
   border: none;
   border-radius: 999px;
@@ -67,11 +69,11 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: background 0.15s ease;
+  transition: filter 0.15s ease;
 }
 
 .btn-primary:hover {
-  background: #7c4feb;
+  filter: brightness(1.1);
 }
 
 .btn-primary__icon {
@@ -109,7 +111,7 @@ body {
   font-family: var(--font-mono);
   font-size: 42px;
   font-weight: 700;
-  color: var(--roxo);
+  color: var(--verde);
   letter-spacing: 1px;
 }
 
@@ -132,7 +134,7 @@ body {
 }
 
 .valor--entrada {
-  color: var(--roxo);
+  color: var(--verde);
 }
 
 .valor--saida {
@@ -167,7 +169,7 @@ body {
 
 .progresso__preenchido {
   height: 100%;
-  background: var(--roxo-forte);
+  background: linear-gradient(90deg, var(--verde-forte), var(--roxo-forte));
   border-radius: 999px 0 0 999px;
   transition: width 0.4s ease;
 }
@@ -200,7 +202,7 @@ body {
 
 .tab--ativa {
   color: var(--text-primary);
-  border-bottom-color: var(--roxo-forte);
+  border-bottom-color: var(--verde-forte);
 }
 
 /* Lista de transações */
@@ -228,7 +230,7 @@ body {
 }
 
 .transacao__marcador--entrada {
-  background: var(--roxo);
+  background: var(--verde);
 }
 
 .transacao__marcador--saida {
@@ -349,6 +351,47 @@ body {
 
 .modal__erro--visivel {
   display: block;
+}
+
+/* Tela de login */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.login-card__titulo {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 6px 0 24px;
+}
+
+.login-card__rodape {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.login-card__rodape a {
+  color: var(--verde);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-card__rodape a:hover {
+  text-decoration: underline;
 }
 
 /* Responsivo */

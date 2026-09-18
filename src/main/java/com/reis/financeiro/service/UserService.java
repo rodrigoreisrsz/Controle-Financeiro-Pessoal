@@ -21,5 +21,15 @@ public class UserService {
         User user = new User(name, password);
         return userRepository.save(user);
     }
+    public User login(String name, String password){
+        User user = userRepository.findByName(name);
+        if(name != user.getName()){
+            throw new RuntimeException("Nome inválido ou não existe.");
+        }
+        if(password != user.getPassword()){
+            throw new RuntimeException("Senha inválida");
+        }
+        return user;
+    }
 
 }
