@@ -1,8 +1,5 @@
 package com.reis.financeiro.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -11,21 +8,35 @@ public class Registro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     private String nome;
     private BigDecimal valor;
     private String descricao;
     private String data;
     private TipoRegistroDTO tipoRegistro;
 
-    public Registro(){
 
-    }
-    public Registro(String nome, String data, BigDecimal valor, String descricao, TipoRegistroDTO tipoRegistro){
+    public Registro(User user, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro) {
+        this.user = user;
         this.nome = nome;
-        this.data = data;
         this.valor = valor;
         this.descricao = descricao;
+        this.data = data;
         this.tipoRegistro = tipoRegistro;
+    }
+
+    public Registro(Long userId,  String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro) {
+        this.id = userId;
+        this.nome = nome;
+        this.valor = valor;
+        this.descricao = descricao;
+        this.data = data;
+        this.tipoRegistro = tipoRegistro;
+    }
+    public Registro(){
+
     }
 
     @Override
@@ -37,6 +48,14 @@ public class Registro {
                 ", data='" + data + '\'' +
                 ", tipoRegistro=" + tipoRegistro +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {
