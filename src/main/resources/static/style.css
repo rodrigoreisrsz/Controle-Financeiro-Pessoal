@@ -4,8 +4,8 @@
   --border: #232330;
   --text-primary: #f2f2f5;
   --text-muted: #7c7c8a;
-  --roxo: #a78bfa;
-  --roxo-forte: #8b5cf6;
+  --roxo: #41ff0c;
+  --roxo-forte: #5cf67b;
   --vermelho: #f87171;
   --radius: 16px;
   --font-mono: 'Courier New', Courier, monospace;
@@ -71,7 +71,7 @@ body {
 }
 
 .btn-primary:hover {
-  background: #7c4feb;
+  background: #41ff0c;
 }
 
 .btn-primary__icon {
