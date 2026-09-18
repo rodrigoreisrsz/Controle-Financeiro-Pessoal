@@ -26,8 +26,8 @@ import java.util.List;
             return repository.findAll();
         }
 
-        public Registro adicionarRegistro(User user, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
-            Registro registro = new Registro(user, nome, data, valor, descricao, tipoRegistro);
+        public Registro adicionarRegistro(Long userId, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
+            Registro registro = new Registro(userId, nome, valor, data, descricao, tipoRegistro);
             saldoService.atualizarSaldo(valor, tipoRegistro);
             return repository.save(registro);
         }
