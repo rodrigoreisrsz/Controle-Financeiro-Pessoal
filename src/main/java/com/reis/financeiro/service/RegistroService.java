@@ -2,6 +2,7 @@ package com.reis.financeiro.service;
 
 import com.reis.financeiro.entities.Registro;
 import com.reis.financeiro.entities.TipoRegistroDTO;
+import com.reis.financeiro.entities.User;
 import com.reis.financeiro.exceptions.RegistroNotFoundException;
 import com.reis.financeiro.repository.RegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ import java.util.List;
             return repository.findAll();
         }
 
-        public Registro adicionarRegistro(String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
-            Registro registro = new Registro(nome, data, valor, descricao, tipoRegistro);
+        public Registro adicionarRegistro(User user, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
+            Registro registro = new Registro(user, nome, data, valor, descricao, tipoRegistro);
             saldoService.atualizarSaldo(valor, tipoRegistro);
             return repository.save(registro);
         }
