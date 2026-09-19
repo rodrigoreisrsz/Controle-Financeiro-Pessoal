@@ -25,8 +25,8 @@ import java.util.List;
             this.userRepository = userRepository;
         }
 
-        public List<Registro> listarRegistros(){
-            return repository.findAll();
+        public List<Registro> listarRegistros(Long userId){
+            return repository.findByUserId(userId);
         }
 
         public Registro adicionarRegistro(Long userId, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){

@@ -1,18 +1,27 @@
 package com.reis.financeiro.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Entity
 public class Saldo {
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal saldo;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(Optional<User> user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

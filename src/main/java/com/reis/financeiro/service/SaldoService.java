@@ -2,34 +2,42 @@ package com.reis.financeiro.service;
 
 import com.reis.financeiro.entities.Saldo;
 import com.reis.financeiro.entities.TipoRegistroDTO;
+import com.reis.financeiro.entities.User;
 import com.reis.financeiro.repository.RegistroRepository;
 import com.reis.financeiro.repository.SaldoRepository;
+import com.reis.financeiro.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SaldoService {
     private final SaldoRepository repository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public SaldoService(SaldoRepository repository){
+    public SaldoService(SaldoRepository repository, UserRepository userRepository){
         this.repository = repository;
+        this.userRepository = userRepository;
     }
 
-    public Saldo buscaOuCriaSaldo(){
-        List<Saldo> saldos = repository.findAll();
-        if(saldos.isEmpty()){
-            Saldo novoSaldo = new Saldo();
-            novoSaldo.setSaldo(BigDecimal.ZERO);
-            return repository.save(novoSaldo);
+    public Saldo buscaOuCriaSaldo(Long userId){
+        Optional<Saldo> saldoExistente = repository.findByUserId(userId);
+        if(saldoExistente.isPresent()){
+            return saldoExistente.get();
+        }else{
+            Optional<User> user = userRepository.findById(userId);
+            Saldo saldo = new Saldo();
+            saldo.setUser(user);
         }
-        return saldos.get(0);
+        return null;
+
     }
-    public void atualizarSaldo(BigDecimal valor, TipoRegistroDTO tipo){
-        Saldo saldo = buscaOuCriaSaldo();
+    public void atualizarSaldo(User user, BigDecimal valor, TipoRegistroDTO tipo){
+        Saldo saldo = buscaOuCriaSaldo(user.getId());
         if(tipo == TipoRegistroDTO.GANHO){
             saldo.setSaldo(saldo.getSaldo().add(valor));
         }else{
