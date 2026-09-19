@@ -1,4 +1,10 @@
-const API_URL = "";
+const API_URL = "http://localhost:8080";
+
+// Exige login: sem usuário salvo, manda pra tela de login
+const userId = localStorage.getItem("usuarioId");
+if (!userId) {
+  window.location.href = "login.html";
+}
 
 // Dados de exemplo — usados como fallback caso a API não esteja no ar
 let transacoes = [
@@ -46,6 +52,13 @@ function renderResumo() {
   document.getElementById("progressoBarra").style.width = `${percentEntradas}%`;
   document.getElementById("percentEntradas").textContent = `${percentEntradas}%`;
   document.getElementById("percentSaidas").textContent = `${percentSaidas}%`;
+
+  // Anel (donut) — preenchimento proporcional ao saldo sobre o total movimentado
+  const circunferencia = 314; // 2 * π * raio(50), arredondado
+  const percentSaldo = total > 0 ? Math.max(0, Math.min(1, saldo / total)) : 0;
+  const offset = circunferencia - percentSaldo * circunferencia;
+  document.getElementById("anelPreenchido").style.strokeDashoffset = offset;
+  document.getElementById("anelSaldo").textContent = formatarMoeda(saldo);
 }
 
 function renderLista() {
@@ -105,7 +118,7 @@ function mapearRegistroBackend(registro) {
 
 async function carregarRegistros() {
   try {
-    const resposta = await fetch(`${API_URL}/registros`);
+    const resposta = await fetch(`${API_URL}/registros?userId=${userId}`);
     if (!resposta.ok) throw new Error("Falha ao buscar registros");
     const dados = await resposta.json();
     transacoes = dados.map(mapearRegistroBackend);
@@ -142,6 +155,7 @@ async function enviarNovoRegistro(event) {
   esconderErro();
 
   const novoRegistro = {
+    userId: Number(userId),
     nome: document.getElementById("campoNome").value,
     valor: parseFloat(document.getElementById("campoValor").value),
     data: document.getElementById("campoData").value,
@@ -176,10 +190,19 @@ function configurarModal() {
   document.getElementById("formRegistro").addEventListener("submit", enviarNovoRegistro);
 }
 
+function configurarLogout() {
+  document.getElementById("btnSair").addEventListener("click", (event) => {
+    event.preventDefault();
+    localStorage.removeItem("usuarioId");
+    window.location.href = "login.html";
+  });
+}
+
 function init() {
   carregarRegistros();
   configurarTabs();
   configurarModal();
+  configurarLogout();
 }
 
 init();

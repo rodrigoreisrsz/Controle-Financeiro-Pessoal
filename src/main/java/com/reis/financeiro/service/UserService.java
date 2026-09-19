@@ -5,6 +5,8 @@ import com.reis.financeiro.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -20,6 +22,16 @@ public class UserService {
     public User cadastrar(String name, String password){
         User user = new User(name, password);
         return userRepository.save(user);
+    }
+    public User login(String name, String password){
+        User user = userRepository.findByName(name);
+        if(user == null){
+            throw new RuntimeException("Usuário inexistente.");
+        }
+        if(!password.equals(user.getPassword())){
+            throw new RuntimeException("Senha inválida");
+        }
+        return user;
     }
 
 }

@@ -6,6 +6,8 @@
   --text-muted: #7c7c8a;
   --roxo: #a78bfa;
   --roxo-forte: #8b5cf6;
+  --verde: #4ade80;
+  --verde-forte: #22c55e;
   --vermelho: #f87171;
   --radius: 16px;
   --font-mono: 'Courier New', Courier, monospace;
@@ -56,7 +58,7 @@ body {
 }
 
 .btn-primary {
-  background: var(--roxo-forte);
+  background: linear-gradient(135deg, var(--roxo-forte), var(--verde-forte));
   color: #fff;
   border: none;
   border-radius: 999px;
@@ -67,11 +69,11 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: background 0.15s ease;
+  transition: filter 0.15s ease;
 }
 
 .btn-primary:hover {
-  background: #7c4feb;
+  filter: brightness(1.1);
 }
 
 .btn-primary__icon {
@@ -109,7 +111,7 @@ body {
   font-family: var(--font-mono);
   font-size: 42px;
   font-weight: 700;
-  color: var(--roxo);
+  color: var(--verde);
   letter-spacing: 1px;
 }
 
@@ -132,7 +134,7 @@ body {
 }
 
 .valor--entrada {
-  color: var(--roxo);
+  color: var(--verde);
 }
 
 .valor--saida {
@@ -167,7 +169,7 @@ body {
 
 .progresso__preenchido {
   height: 100%;
-  background: var(--roxo-forte);
+  background: linear-gradient(90deg, var(--verde-forte), var(--roxo-forte));
   border-radius: 999px 0 0 999px;
   transition: width 0.4s ease;
 }
@@ -200,7 +202,7 @@ body {
 
 .tab--ativa {
   color: var(--text-primary);
-  border-bottom-color: var(--roxo-forte);
+  border-bottom-color: var(--verde-forte);
 }
 
 /* Lista de transações */
@@ -228,7 +230,7 @@ body {
 }
 
 .transacao__marcador--entrada {
-  background: var(--roxo);
+  background: var(--verde);
 }
 
 .transacao__marcador--saida {
@@ -351,7 +353,382 @@ body {
   display: block;
 }
 
+/* Tela de login */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.login-card__titulo {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 6px 0 24px;
+}
+
+.login-card__rodape {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.login-card__rodape a {
+  color: var(--verde);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-card__rodape a:hover {
+  text-decoration: underline;
+}
+
+/* Layout geral: sidebar + conteúdo */
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sidebar__perfil {
+  text-align: center;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--roxo-forte), var(--verde-forte));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  margin: 0 auto 12px;
+}
+
+.sidebar__nome {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.sidebar__cargo {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.sidebar__nav,
+.sidebar__rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar__rodape {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.sidebar__item:hover {
+  background: var(--bg);
+  color: var(--text-primary);
+}
+
+.sidebar__item--ativo {
+  background: var(--bg);
+  color: var(--text-primary);
+  box-shadow: inset 3px 0 0 var(--roxo-forte);
+}
+
+.sidebar__icone {
+  font-size: 14px;
+  width: 16px;
+  text-align: center;
+}
+
+/* Conteúdo principal */
+.conteudo {
+  flex: 1;
+  padding: 32px 40px 60px;
+  max-width: 1000px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.topbar__busca {
+  flex: 1;
+  max-width: 360px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 10px 18px;
+}
+
+.topbar__busca input {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+.conteudo__header {
+  margin-bottom: 24px;
+}
+
+/* Grid de cards */
+.grid-cards {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 20px;
+}
+
+.card--destaque {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.card--progresso {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.card--anel {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.card--transacoes {
+  grid-column: 1 / -1;
+}
+
+/* Card de saldo em destaque */
+.card--destaque .saldo-secundario {
+  display: flex;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.card--destaque .saldo-secundario__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.badge--entrada {
+  background: rgba(74, 222, 128, 0.15);
+  color: var(--verde);
+}
+
+.badge--saida {
+  background: rgba(248, 113, 113, 0.15);
+  color: var(--vermelho);
+}
+
+/* Card de progresso — ajustes de ordem visual */
+.card--progresso .progresso__legendas {
+  margin-top: 14px;
+  margin-bottom: 0;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.dot--roxo {
+  background: var(--roxo-forte);
+}
+
+.dot--cinza {
+  background: #2a2a35;
+}
+
+/* Card de anel (donut) */
+.card--anel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.anel-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-top: 12px;
+}
+
+.anel {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.anel__fundo {
+  fill: none;
+  stroke: #2a2a35;
+  stroke-width: 10;
+}
+
+.anel__preenchido {
+  fill: none;
+  stroke: var(--verde-forte);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 314;
+  stroke-dashoffset: 314;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.anel__valor {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.anel__valor p {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.anel__valor span {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Card de transações — ajustes de topo */
+.card__topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.card__titulo {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.card--transacoes .tabs {
+  border-bottom: none;
+  margin-bottom: 0;
+  gap: 16px;
+}
+
+.card--transacoes .tab {
+  padding: 6px 4px;
+  font-size: 11px;
+}
+
 /* Responsivo */
+@media (max-width: 900px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 20px;
+    gap: 16px;
+    overflow-x: auto;
+  }
+
+  .sidebar__perfil,
+  .sidebar__rodape {
+    display: none;
+  }
+
+  .sidebar__nav {
+    flex-direction: row;
+  }
+
+  .conteudo {
+    padding: 24px 20px 60px;
+  }
+
+  .grid-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card--destaque,
+  .card--progresso,
+  .card--anel,
+  .card--transacoes {
+    grid-column: 1;
+  }
+}
+
 @media (max-width: 480px) {
   .dashboard__header {
     flex-direction: column;

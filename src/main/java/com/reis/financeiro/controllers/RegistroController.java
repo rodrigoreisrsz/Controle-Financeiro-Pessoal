@@ -20,8 +20,8 @@ public class RegistroController {
         this.service = service;
     }
     @GetMapping
-    public List<Registro>listar(){
-        return service.listarRegistros();
+    public List<Registro>listar(@RequestParam Long userId){
+        return service.listarRegistros(userId);
     }
     @GetMapping("/{id}")
     public Registro buscaPorId(@PathVariable  int id){
@@ -29,7 +29,7 @@ public class RegistroController {
     }
     @PostMapping
     public Registro criar(@RequestBody @Valid RegistroCreateDTO registroCreate){
-        return service.adicionarRegistro(registroCreate.getNome(),  registroCreate.getValor(), registroCreate.getDescricao(), registroCreate.getData(), registroCreate.getTipoRegistro());
+        return service.adicionarRegistro(registroCreate.getUserId(), registroCreate.getNome(),  registroCreate.getValor(), registroCreate.getDescricao(), registroCreate.getData(), registroCreate.getTipoRegistro());
     }
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable int id){

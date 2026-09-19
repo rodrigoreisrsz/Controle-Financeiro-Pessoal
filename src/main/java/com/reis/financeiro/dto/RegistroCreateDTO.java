@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public class RegistroCreateDTO {
+    private Long userId;
     @NotBlank
     private String nome;
     private String data;
@@ -14,6 +15,14 @@ public class RegistroCreateDTO {
     private BigDecimal valor;
     private String descricao;
     private TipoRegistroDTO tipoRegistro;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public String getNome() {
         return nome;
