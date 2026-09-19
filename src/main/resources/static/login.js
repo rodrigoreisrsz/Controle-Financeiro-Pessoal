@@ -17,24 +17,23 @@ async function fazerLogin(event) {
     const nome = document.getElementById("loginNome").value;
     const senha = document.getElementById("loginSenha").value;
 
-    // TODO: quando o endpoint POST /login existir no backend, troque este bloco por:
-    //
-    // try {
-    //   const resposta = await fetch(`${API_URL}/login`, {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({ name: nome, password: senha }),
-    //   });
-    //   if (!resposta.ok) throw new Error("Usuário ou senha inválidos.");
-    //   const usuario = await resposta.json();
-    //   localStorage.setItem("usuarioId", usuario.id);
-    //   window.location.href = "index.html";
-    // } catch (erro) {
-    //   mostrarErroLogin(erro.message);
-    // }
+    try {
+        const resposta = await fetch(`${API_URL}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: nome, password: senha }),
+        });
 
-    console.log("[Finanças] Login simulado (backend ainda não conectado):", { nome, senha });
-    mostrarErroLogin("Login ainda não conectado ao backend — endpoint /login pendente.");
+        if (!resposta.ok) {
+            throw new Error("Usuário ou senha inválidos.");
+        }
+
+        const usuario = await resposta.json();
+        localStorage.setItem("usuarioId", usuario.id);
+        window.location.href = "index.html";
+    } catch (erro) {
+        mostrarErroLogin(erro.message);
+    }
 }
 
 document.getElementById("formLogin").addEventListener("submit", fazerLogin);

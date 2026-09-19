@@ -1,5 +1,11 @@
 const API_URL = "http://localhost:8080";
 
+// Exige login: sem usuário salvo, manda pra tela de login
+const userId = localStorage.getItem("usuarioId");
+if (!userId) {
+  window.location.href = "login.html";
+}
+
 // Dados de exemplo — usados como fallback caso a API não esteja no ar
 let transacoes = [
   { nome: "Dividendos", categoria: "Investimentos", data: "2026-09-14", valor: 340, tipo: "entrada" },
@@ -112,7 +118,7 @@ function mapearRegistroBackend(registro) {
 
 async function carregarRegistros() {
   try {
-    const resposta = await fetch(`${API_URL}/registros`);
+    const resposta = await fetch(`${API_URL}/registros?userId=${userId}`);
     if (!resposta.ok) throw new Error("Falha ao buscar registros");
     const dados = await resposta.json();
     transacoes = dados.map(mapearRegistroBackend);
@@ -149,6 +155,7 @@ async function enviarNovoRegistro(event) {
   esconderErro();
 
   const novoRegistro = {
+    userId: Number(userId),
     nome: document.getElementById("campoNome").value,
     valor: parseFloat(document.getElementById("campoValor").value),
     data: document.getElementById("campoData").value,
@@ -183,10 +190,19 @@ function configurarModal() {
   document.getElementById("formRegistro").addEventListener("submit", enviarNovoRegistro);
 }
 
+function configurarLogout() {
+  document.getElementById("btnSair").addEventListener("click", (event) => {
+    event.preventDefault();
+    localStorage.removeItem("usuarioId");
+    window.location.href = "login.html";
+  });
+}
+
 function init() {
   carregarRegistros();
   configurarTabs();
   configurarModal();
+  configurarLogout();
 }
 
 init();
