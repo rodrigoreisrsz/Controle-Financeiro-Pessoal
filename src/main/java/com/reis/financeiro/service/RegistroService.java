@@ -29,9 +29,9 @@ import java.util.List;
             return repository.findAll();
         }
 
-        public Registro adicionarRegistro(User user, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
-            userRepository.findById(id)
-            Registro registro = new Registro(user, nome, valor, data, descricao, tipoRegistro);
+        public Registro adicionarRegistro(Long userId, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
+            User userExists = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User inexistente."));
+            Registro registro = new Registro(userExists, nome, valor, data, descricao, tipoRegistro);
 
             saldoService.atualizarSaldo(valor, tipoRegistro);
             return repository.save(registro);
