@@ -7,62 +7,123 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="dashboard">
+<div class="app">
 
-  <header class="dashboard__header">
-    <div>
-      <p class="dashboard__month">Setembro 2026</p>
-      <h1 class="dashboard__title">Finanças Pessoais</h1>
+  <aside class="sidebar">
+    <div class="sidebar__perfil">
+      <div class="avatar">RS</div>
+      <p class="sidebar__nome">Rodrigo Reis</p>
+      <p class="sidebar__cargo">Minhas finanças</p>
     </div>
-    <button class="btn-primary" id="btnNovoRegistro">
-      <span class="btn-primary__icon">+</span> Novo registro
-    </button>
-  </header>
 
-  <section class="card card--saldo">
-    <div class="saldo-principal">
-      <p class="card__label">Saldo total</p>
-      <p class="saldo-principal__valor" id="saldoTotal">R$ 0,00</p>
-    </div>
-    <div class="saldo-secundario">
-      <div class="saldo-secundario__item">
-        <p class="card__label">Entradas</p>
-        <p class="valor valor--entrada" id="totalEntradas">R$ 0,00</p>
-      </div>
-      <div class="saldo-secundario__divisor"></div>
-      <div class="saldo-secundario__item">
-        <p class="card__label">Saídas</p>
-        <p class="valor valor--saida" id="totalSaidas">R$ 0,00</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="card card--progresso">
-    <div class="progresso__legendas">
-      <span>Entradas</span>
-      <span>Saídas</span>
-    </div>
-    <div class="progresso__barra">
-      <div class="progresso__preenchido" id="progressoBarra"></div>
-    </div>
-    <div class="progresso__percentuais">
-      <span id="percentEntradas">0%</span>
-      <span id="percentSaidas">0%</span>
-    </div>
-  </section>
-
-  <section class="card card--lista">
-    <nav class="tabs" id="tabs">
-      <button class="tab tab--ativa" data-filtro="todos">Todos</button>
-      <button class="tab" data-filtro="entrada">Entradas</button>
-      <button class="tab" data-filtro="saida">Saídas</button>
+    <nav class="sidebar__nav">
+      <a href="#" class="sidebar__item sidebar__item--ativo">
+        <span class="sidebar__icone">◆</span> Dashboard
+      </a>
+      <a href="#" class="sidebar__item">
+        <span class="sidebar__icone">≡</span> Registros
+      </a>
+      <a href="#" class="sidebar__item">
+        <span class="sidebar__icone">◐</span> Análises
+      </a>
     </nav>
 
-    <ul class="lista-transacoes" id="listaTransacoes">
-      <!-- itens gerados dinamicamente via script.js -->
-    </ul>
-  </section>
+    <div class="sidebar__rodape">
+      <a href="#" class="sidebar__item">
+        <span class="sidebar__icone">⚙</span> Configurações
+      </a>
+      <a href="login.html" class="sidebar__item">
+        <span class="sidebar__icone">⏻</span> Sair
+      </a>
+    </div>
+  </aside>
 
+  <main class="conteudo">
+
+    <div class="topbar">
+      <div class="topbar__busca">
+        <span>🔍</span>
+        <input type="text" placeholder="Buscar registro...">
+      </div>
+      <button class="btn-primary" id="btnNovoRegistro">
+        <span class="btn-primary__icon">+</span> Novo registro
+      </button>
+    </div>
+
+    <div class="conteudo__header">
+      <p class="dashboard__month">Setembro 2026</p>
+      <h1 class="dashboard__title">Dashboard</h1>
+    </div>
+
+    <div class="grid-cards">
+
+      <section class="card card--saldo card--destaque">
+        <p class="card__label">Saldo total</p>
+        <p class="saldo-principal__valor" id="saldoTotal">R$ 0,00</p>
+        <div class="saldo-secundario">
+          <div class="saldo-secundario__item">
+            <span class="badge badge--entrada">↑</span>
+            <div>
+              <p class="card__label">Entradas</p>
+              <p class="valor valor--entrada" id="totalEntradas">R$ 0,00</p>
+            </div>
+          </div>
+          <div class="saldo-secundario__item">
+            <span class="badge badge--saida">↓</span>
+            <div>
+              <p class="card__label">Saídas</p>
+              <p class="valor valor--saida" id="totalSaidas">R$ 0,00</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card card--progresso">
+        <p class="card__label">Entradas vs. Saídas</p>
+        <div class="progresso__barra">
+          <div class="progresso__preenchido" id="progressoBarra"></div>
+        </div>
+        <div class="progresso__percentuais">
+          <span id="percentEntradas">0%</span>
+          <span id="percentSaidas">0%</span>
+        </div>
+        <div class="progresso__legendas">
+          <span><i class="dot dot--roxo"></i> Entradas</span>
+          <span><i class="dot dot--cinza"></i> Saídas</span>
+        </div>
+      </section>
+
+      <section class="card card--anel">
+        <p class="card__label">Saldo do mês</p>
+        <div class="anel-wrapper">
+          <svg viewBox="0 0 120 120" class="anel">
+            <circle cx="60" cy="60" r="50" class="anel__fundo" />
+            <circle cx="60" cy="60" r="50" class="anel__preenchido" id="anelPreenchido" />
+          </svg>
+          <div class="anel__valor">
+            <p id="anelSaldo">R$ 0,00</p>
+            <span>líquido</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card card--lista card--transacoes">
+        <div class="card__topo">
+          <p class="card__titulo">Transações</p>
+          <nav class="tabs" id="tabs">
+            <button class="tab tab--ativa" data-filtro="todos">Todos</button>
+            <button class="tab" data-filtro="entrada">Entradas</button>
+            <button class="tab" data-filtro="saida">Saídas</button>
+          </nav>
+        </div>
+
+        <ul class="lista-transacoes" id="listaTransacoes">
+          <!-- itens gerados dinamicamente via script.js -->
+        </ul>
+      </section>
+
+    </div>
+  </main>
 </div>
 
 <div class="modal-overlay" id="modalOverlay">

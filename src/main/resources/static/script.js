@@ -1,4 +1,4 @@
-const API_URL = "";
+const API_URL = "http://localhost:8080";
 
 // Dados de exemplo — usados como fallback caso a API não esteja no ar
 let transacoes = [
@@ -46,6 +46,13 @@ function renderResumo() {
   document.getElementById("progressoBarra").style.width = `${percentEntradas}%`;
   document.getElementById("percentEntradas").textContent = `${percentEntradas}%`;
   document.getElementById("percentSaidas").textContent = `${percentSaidas}%`;
+
+  // Anel (donut) — preenchimento proporcional ao saldo sobre o total movimentado
+  const circunferencia = 314; // 2 * π * raio(50), arredondado
+  const percentSaldo = total > 0 ? Math.max(0, Math.min(1, saldo / total)) : 0;
+  const offset = circunferencia - percentSaldo * circunferencia;
+  document.getElementById("anelPreenchido").style.strokeDashoffset = offset;
+  document.getElementById("anelSaldo").textContent = formatarMoeda(saldo);
 }
 
 function renderLista() {

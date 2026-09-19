@@ -27,14 +27,7 @@ public class Registro {
         this.tipoRegistro = tipoRegistro;
     }
 
-    public Registro(Long userId,  String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro) {
-        this.id = userId;
-        this.nome = nome;
-        this.valor = valor;
-        this.descricao = descricao;
-        this.data = data;
-        this.tipoRegistro = tipoRegistro;
-    }
+
     public Registro(){
 
     }
