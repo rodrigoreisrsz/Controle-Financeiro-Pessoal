@@ -29,7 +29,7 @@ public class SaldoService {
         if(saldoExistente.isPresent()){
             return saldoExistente.get();
         }else{
-            Optional<User> user = userRepository.findById(userId);
+            User user = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("Usuário inexistente."));
             Saldo saldo = new Saldo();
             saldo.setSaldo(BigDecimal.ZERO);
             saldo.setUser(user);
