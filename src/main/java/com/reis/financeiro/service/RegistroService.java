@@ -33,7 +33,7 @@ import java.util.List;
             User userExists = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User inexistente."));
             Registro registro = new Registro(userExists, nome, valor, data, descricao, tipoRegistro);
 
-            saldoService.atualizarSaldo(valor, tipoRegistro);
+            saldoService.atualizarSaldo(userId, valor, tipoRegistro);
             return repository.save(registro);
         }
 

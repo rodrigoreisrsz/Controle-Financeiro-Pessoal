@@ -31,9 +31,12 @@ public class SaldoService {
         }else{
             Optional<User> user = userRepository.findById(userId);
             Saldo saldo = new Saldo();
+            saldo.setSaldo(BigDecimal.ZERO);
             saldo.setUser(user);
+            repository.save(saldo);
+            return saldo;
         }
-        return null;
+
 
     }
     public void atualizarSaldo(User user, BigDecimal valor, TipoRegistroDTO tipo){

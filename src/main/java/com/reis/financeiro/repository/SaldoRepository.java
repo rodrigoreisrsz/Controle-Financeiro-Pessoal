@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface SaldoRepository extends JpaRepository<Saldo, Integer> {
+public interface SaldoRepository extends JpaRepository<Saldo, Long> {
     Optional<Saldo> findByUserId(Long userId);
 }
