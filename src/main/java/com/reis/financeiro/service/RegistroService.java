@@ -33,7 +33,7 @@ import java.util.List;
             User userExists = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User inexistente."));
             Registro registro = new Registro(userExists, nome, valor, data, descricao, tipoRegistro);
 
-            saldoService.atualizarSaldo(userId, valor, tipoRegistro);
+            saldoService.atualizarSaldo(userExists, valor, tipoRegistro);
             return repository.save(registro);
         }
 
@@ -42,7 +42,7 @@ import java.util.List;
 
             TipoRegistroDTO tipoInvertido = (registro.getTipoRegistro() == TipoRegistroDTO.GANHO) ? TipoRegistroDTO.GASTO : TipoRegistroDTO.GANHO;
 
-            saldoService.atualizarSaldo(registro.getValor(), tipoInvertido);
+            saldoService.atualizarSaldo(registro.getUser(), registro.getValor(), tipoInvertido);
             repository.delete(registro);
 
         }
