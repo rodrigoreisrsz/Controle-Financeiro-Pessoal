@@ -37,7 +37,7 @@ import java.util.List;
             return repository.save(registro);
         }
 
-        public void deletarRegistro(int id){
+        public void deletarRegistro(long id){
             Registro registro = buscarPorId(id);
 
             TipoRegistroDTO tipoInvertido = (registro.getTipoRegistro() == TipoRegistroDTO.GANHO) ? TipoRegistroDTO.GASTO : TipoRegistroDTO.GANHO;
@@ -46,7 +46,7 @@ import java.util.List;
             repository.delete(registro);
 
         }
-        public Registro buscarPorId(int id){
+        public Registro buscarPorId(long id){
             Registro registro = repository.findById(id).orElseThrow(()-> new RegistroNotFoundException());
             return registro;
         }
