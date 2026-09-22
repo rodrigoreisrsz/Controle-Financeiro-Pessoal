@@ -1,10 +1,12 @@
 package com.reis.financeiro.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 public class UserCreateDTO {
-    @NotBlank
+    @Positive
     private Long id;
+    @NotBlank
     private String name;
     private String password;
 
@@ -32,6 +34,5 @@ public class UserCreateDTO {
         this.password = password;
     }
 
-    public String ge4() {
-    }
+
 }

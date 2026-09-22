@@ -21,8 +21,8 @@ public class UserController {
     public User cadastrar(@RequestBody @Valid UserCreateDTO userCreate){
         return userService.cadastrar(userCreate.getName(), userCreate.getPassword());
     }
-    @PostMapping("/{user/login}")
-    public User login(@PathVariable UserCreateDTO userCreateDTO){
+    @PostMapping("/login")
+    public User login(@RequestBody UserCreateDTO userCreateDTO){
         return userService.login(userCreateDTO.getName(), userCreateDTO.getPassword());
     }
 }
