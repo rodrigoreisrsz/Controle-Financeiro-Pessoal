@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080";
+const API_URL = "https://controle-financeiro-pessoal-wpzz.onrender.com";
 
 function mostrarErroLogin(mensagem) {
     const erro = document.getElementById("loginErro");

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080";
+const API_URL = "https://controle-financeiro-pessoal-wpzz.onrender.com";
 
 // Exige login: sem usuário salvo, manda pra tela de login
 const userId = localStorage.getItem("usuarioId");
