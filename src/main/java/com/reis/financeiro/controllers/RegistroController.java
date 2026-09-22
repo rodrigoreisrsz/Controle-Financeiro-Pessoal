@@ -35,4 +35,9 @@ public class RegistroController {
     public void deletar(@PathVariable int id){
         service.deletarRegistro(id);
     }
+
+    @PutMapping("/{id}")
+    public Registro editar(@PathVariable long id, @RequestBody @Valid RegistroCreateDTO registroCreateDTO){
+        return service.editar(id, registroCreateDTO.getNome(), registroCreateDTO.getValor(), registroCreateDTO.getDescricao(), registroCreateDTO.getData(), registroCreateDTO.getTipoRegistro());
+    }
 }

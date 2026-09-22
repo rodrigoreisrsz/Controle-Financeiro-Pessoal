@@ -50,6 +50,17 @@ import java.util.List;
             Registro registro = repository.findById(id).orElseThrow(()-> new RegistroNotFoundException());
             return registro;
         }
+        public Registro editar(long id, String nome, BigDecimal valor,  String descricao, String data,  TipoRegistroDTO tipoRegistroDTO ){
+            Registro registroExistente = buscarPorId(id);
+            registroExistente.setNome(nome);
+            registroExistente.setData(data);
+            registroExistente.setValor(valor);
+            registroExistente.setDescricao(descricao);
+            registroExistente.setTipoRegistro(tipoRegistroDTO);
+            return repository.save(registroExistente);
+
+
+        }
 
 
 }
