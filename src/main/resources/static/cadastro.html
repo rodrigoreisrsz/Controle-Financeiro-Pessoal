@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro — Finanças Pessoais</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="login-page">
+    <div class="login-card">
+        <p class="dashboard__month">Finanças Pessoais</p>
+        <h1 class="login-card__titulo">Criar conta</h1>
+
+        <form id="formCadastro" class="modal__form">
+            <label class="campo">
+                <span>Usuário</span>
+                <input type="text" id="cadastroNome" required autocomplete="username">
+            </label>
+
+            <label class="campo">
+                <span>Senha</span>
+                <input type="password" id="cadastroSenha" required autocomplete="new-password">
+            </label>
+
+            <p class="modal__erro" id="cadastroErro"></p>
+
+            <button type="submit" class="btn-primary modal__submit">Criar conta</button>
+        </form>
+
+        <p class="login-card__rodape">
+            Já tem conta? <a href="login.html">Entrar</a>
+        </p>
+    </div>
+</div>
+
+<script src="cadastro.js"></script>
+</body>
+</html>

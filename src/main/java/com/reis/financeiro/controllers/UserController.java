@@ -5,10 +5,7 @@ import com.reis.financeiro.entities.User;
 import com.reis.financeiro.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -23,5 +20,9 @@ public class UserController {
     @PostMapping
     public User cadastrar(@RequestBody @Valid UserCreateDTO userCreate){
         return userService.cadastrar(userCreate.getName(), userCreate.getPassword());
+    }
+    @PostMapping("/login")
+    public User login(@RequestBody UserCreateDTO userCreateDTO){
+        return userService.login(userCreateDTO.getName(), userCreateDTO.getPassword());
     }
 }
