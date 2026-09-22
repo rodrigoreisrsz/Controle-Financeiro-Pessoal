@@ -25,12 +25,14 @@ async function fazerCadastro(event) {
         });
 
         if (!resposta.ok) {
-            throw new Error("Não foi possível criar a conta (usuário já existe ou dados inválidos).");
+            const corpo = await resposta.text();
+            throw new Error(`Erro ${resposta.status}: ${corpo || "sem detalhes retornados pela API"}`);
         }
 
         window.location.href = "login.html";
     } catch (erro) {
         mostrarErroCadastro(erro.message);
+        console.error("[Cadastro] Falha:", erro);
     }
 }
 
