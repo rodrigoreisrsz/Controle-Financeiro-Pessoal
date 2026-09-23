@@ -11,8 +11,8 @@
 
   <aside class="sidebar">
     <div class="sidebar__perfil">
-      <div class="avatar">RS</div>
-      <p class="sidebar__nome">User</p>
+      <div class="avatar" id="avatarIniciais">RS</div>
+      <p class="sidebar__nome" id="nomeUsuario">Usuário</p>
       <p class="sidebar__cargo">Minhas finanças</p>
     </div>
 
@@ -20,6 +20,11 @@
       <a href="#" class="sidebar__item sidebar__item--ativo">
         <span class="sidebar__icone">◆</span> Dashboard
       </a>
+      <a href="#" class="sidebar__item">
+        <span class="sidebar__icone">≡</span> Registros
+      </a>
+      <a href="#" class="sidebar__item">
+        <span class="sidebar__icone">◐</span> Análises
       </a>
     </nav>
 
@@ -37,7 +42,7 @@
 
     <div class="topbar">
       <div class="topbar__busca">
-
+        <span>🔍</span>
         <input type="text" placeholder="Buscar registro...">
       </div>
       <button class="btn-primary" id="btnNovoRegistro">

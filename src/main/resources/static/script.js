@@ -61,6 +61,12 @@ function renderResumo() {
   document.getElementById("anelSaldo").textContent = formatarMoeda(saldo);
 }
 
+function escapeHtml(texto) {
+  const div = document.createElement("div");
+  div.textContent = String(texto ?? "");
+  return div.innerHTML;
+}
+
 function renderLista() {
   const container = document.getElementById("listaTransacoes");
   container.innerHTML = "";
@@ -82,8 +88,8 @@ function renderLista() {
     item.innerHTML = `
       <span class="transacao__marcador ${classeMarcador}"></span>
       <div class="transacao__info">
-        <p class="transacao__nome">${t.nome}</p>
-        <p class="transacao__meta">${t.categoria} · ${formatarData(t.data)}</p>
+        <p class="transacao__nome">${escapeHtml(t.nome)}</p>
+        <p class="transacao__meta">${escapeHtml(t.categoria)} · ${formatarData(t.data)}</p>
       </div>
       <p class="transacao__valor ${classeValor}">${sinal}${formatarMoeda(t.valor)}</p>
     `;
@@ -190,15 +196,30 @@ function configurarModal() {
   document.getElementById("formRegistro").addEventListener("submit", enviarNovoRegistro);
 }
 
+function renderUsuario() {
+  const nome = localStorage.getItem("usuarioNome") || "Usuário";
+  document.getElementById("nomeUsuario").textContent = nome;
+
+  const iniciais = nome
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((parte) => parte[0]?.toUpperCase() ?? "")
+      .join("");
+  document.getElementById("avatarIniciais").textContent = iniciais || "?";
+}
+
 function configurarLogout() {
   document.getElementById("btnSair").addEventListener("click", (event) => {
     event.preventDefault();
     localStorage.removeItem("usuarioId");
+    localStorage.removeItem("usuarioNome");
     window.location.href = "login.html";
   });
 }
 
 function init() {
+  renderUsuario();
   carregarRegistros();
   configurarTabs();
   configurarModal();

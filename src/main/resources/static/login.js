@@ -30,6 +30,7 @@ async function fazerLogin(event) {
 
         const usuario = await resposta.json();
         localStorage.setItem("usuarioId", usuario.id);
+        localStorage.setItem("usuarioNome", usuario.name);
         window.location.href = "index.html";
     } catch (erro) {
         mostrarErroLogin(erro.message);
