@@ -45,7 +45,8 @@ public class RegistroController {
     }
 
     @PutMapping("/{id}")
-    public Registro editar(@PathVariable long id, @RequestBody @Valid RegistroCreateDTO registroCreateDTO){
-        return service.editar(id, registroCreateDTO.getNome(), registroCreateDTO.getValor(), registroCreateDTO.getDescricao(), registroCreateDTO.getData(), registroCreateDTO.getTipoRegistro());
+    public ResponseEntity<RegistroResponse> editar(@PathVariable long id, @RequestBody @Valid RegistroCreateDTO registroCreateDTO){
+        RegistroResponse response =  service.editar(id, registroCreateDTO.getNome(), registroCreateDTO.getValor(), registroCreateDTO.getDescricao(), registroCreateDTO.getData(), registroCreateDTO.getTipoRegistro());
+        return  ResponseEntity.ok(response);
     }
 }

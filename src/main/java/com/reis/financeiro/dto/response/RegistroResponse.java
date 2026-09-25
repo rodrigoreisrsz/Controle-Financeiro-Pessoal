@@ -38,4 +38,5 @@ public class RegistroResponse {
     public String getDesricao() {
         return desricao;
     }
+
 }

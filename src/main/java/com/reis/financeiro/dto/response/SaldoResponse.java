@@ -21,4 +21,8 @@ public class SaldoResponse {
         this.valor = valor;
         this.data = data;
     }
+
+    public SaldoResponse() {
+
+    }
 }

@@ -40,11 +40,13 @@ import java.util.List;
         }
 
         public void deletarRegistro(long id){
-            Registro registro = buscarPorId(id);
+            Registro registro = repository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Registro não encontrado."));
 
             TipoRegistroDTO tipoInvertido = (registro.getTipoRegistro() == TipoRegistroDTO.GANHO) ? TipoRegistroDTO.GASTO : TipoRegistroDTO.GANHO;
 
             saldoService.atualizarSaldo(registro.getUser(), registro.getValor(), tipoInvertido);
+
             repository.delete(registro);
 
         }
@@ -52,14 +54,24 @@ import java.util.List;
             Registro registro = repository.findById(id).orElseThrow(()-> new RegistroNotFoundException());
             return new RegistroResponse(registro);
         }
-        public Registro editar(long id, String nome, BigDecimal valor,  String descricao, String data,  TipoRegistroDTO tipoRegistroDTO ){
-            Registro registroExistente = buscarPorId(id);
+        public RegistroResponse editar(long id, String nome, BigDecimal valor,  String descricao, String data,  TipoRegistroDTO tipoRegistroDTO ){
+            Registro registroExistente = repository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Registro não encontrado."));
+
+
+            TipoRegistroDTO tipoInvertidoAntigo = (registroExistente.getTipoRegistro() == TipoRegistroDTO.GANHO)
+                    ? TipoRegistroDTO.GASTO
+                    : TipoRegistroDTO.GANHO;
+            saldoService.atualizarSaldo(registroExistente.getUser(), registroExistente.getValor(), tipoInvertidoAntigo);
+
             registroExistente.setNome(nome);
             registroExistente.setData(data);
             registroExistente.setValor(valor);
             registroExistente.setDescricao(descricao);
             registroExistente.setTipoRegistro(tipoRegistroDTO);
-            return repository.save(registroExistente);
+            repository.save(registroExistente);
+
+            return new RegistroResponse(registroExistente);
 
 
         }
