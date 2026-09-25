@@ -1,4 +1,4 @@
-package com.reis.financeiro.dto;
+package com.reis.financeiro.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;

@@ -1,6 +1,6 @@
 package com.reis.financeiro.controllers;
 
-import com.reis.financeiro.dto.UserCreateDTO;
+import com.reis.financeiro.dto.request.UserCreateDTO;
 import com.reis.financeiro.entities.User;
 import com.reis.financeiro.service.UserService;
 import jakarta.validation.Valid;
