@@ -21,8 +21,11 @@ public class RegistroController {
     }
     @GetMapping
     public List<Registro>listar(@RequestParam Long userId){
+
+
         return service.listarRegistros(userId);
     }
+
     @GetMapping("/{id}")
     public Registro buscaPorId(@PathVariable  int id){
         return service.buscarPorId(id);

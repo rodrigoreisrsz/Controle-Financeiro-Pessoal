@@ -1,10 +1,12 @@
 package com.reis.financeiro.controllers;
 
 import com.reis.financeiro.dto.request.UserCreateDTO;
+import com.reis.financeiro.dto.response.UserResponse;
 import com.reis.financeiro.entities.User;
 import com.reis.financeiro.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,11 +20,14 @@ public class UserController {
         this.userService = userService;
     }
     @PostMapping
-    public User cadastrar(@RequestBody @Valid UserCreateDTO userCreate){
-        return userService.cadastrar(userCreate.getName(), userCreate.getPassword());
+    public ResponseEntity<UserResponse> cadastrar(@RequestBody @Valid UserCreateDTO userCreate){
+        UserResponse response = userService.cadastrar(userCreate.getName(), userCreate.getPassword());
+        return ResponseEntity.ok(response);
+        //return userService.cadastrar(userCreate.getName(), userCreate.getPassword());
     }
     @PostMapping("/login")
-    public User login(@RequestBody UserCreateDTO userCreateDTO){
-        return userService.login(userCreateDTO.getName(), userCreateDTO.getPassword());
+    public ResponseEntity<UserResponse> login(@RequestBody UserCreateDTO userCreateDTO){
+        UserResponse response = userService.login(userCreateDTO.getName(), userCreateDTO.getPassword());
+        return ResponseEntity.ok(response);
     }
 }

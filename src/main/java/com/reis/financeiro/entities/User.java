@@ -1,10 +1,11 @@
 package com.reis.financeiro.entities;
 
+import com.reis.financeiro.dto.response.UserResponse;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuario")
-public class User {
+public class User extends UserResponse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
