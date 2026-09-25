@@ -1,5 +1,6 @@
 package com.reis.financeiro.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.reis.financeiro.dto.response.UserResponse;
 import jakarta.persistence.*;
 
@@ -11,6 +12,7 @@ public class User  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @JsonIgnore
     private String password;
 
     public User(Long id, String name, String password) {

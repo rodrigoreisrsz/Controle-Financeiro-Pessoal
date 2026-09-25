@@ -1,9 +1,11 @@
 package com.reis.financeiro.dto.response;
 
 import com.reis.financeiro.entities.Registro;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 
+@Getter
 public class RegistroResponse {
     private Long id;
     private String nome;
@@ -19,24 +21,5 @@ public class RegistroResponse {
         this.desricao = registroSalvo.getDescricao();
     }
 
-
-    public  Long getId(){
-        return id;
-    }
-    public String getNome() {
-        return nome;
-    }
-
-    public BigDecimal getValor() {
-        return valor;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public String getDesricao() {
-        return desricao;
-    }
 
 }
