@@ -1,5 +1,6 @@
 package com.reis.financeiro.service;
 
+import com.reis.financeiro.dto.response.UserResponse;
 import com.reis.financeiro.entities.User;
 import com.reis.financeiro.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,12 @@ public class UserService {
         this.registroService = registroService;
     }
 
-    public User cadastrar(String name, String password){
+    public UserResponse cadastrar(String name, String password){
         User user = new User(name, password);
-        return userRepository.save(user);
+        User userSalvo = userRepository.save(user);
+        return new UserResponse(userSalvo);
     }
-    public User login(String name, String password){
+    public UserResponse login(String name, String password){
         User user = userRepository.findByName(name);
         if(user == null){
             throw new RuntimeException("Usuário inexistente.");
@@ -31,7 +33,7 @@ public class UserService {
         if(!password.equals(user.getPassword())){
             throw new RuntimeException("Senha inválida");
         }
-        return user;
+        return new UserResponse(user);
     }
 
 }
