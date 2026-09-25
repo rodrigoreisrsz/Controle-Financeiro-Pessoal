@@ -1,5 +1,6 @@
 package com.reis.financeiro.service;
 
+import com.reis.financeiro.dto.response.RegistroResponse;
 import com.reis.financeiro.entities.Registro;
 import com.reis.financeiro.entities.TipoRegistroDTO;
 import com.reis.financeiro.entities.User;
@@ -29,12 +30,13 @@ import java.util.List;
             return repository.findByUserId(userId);
         }
 
-        public Registro adicionarRegistro(Long userId, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
+        public RegistroResponse adicionarRegistro(Long userId, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
             User userExists = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User inexistente."));
             Registro registro = new Registro(userExists, nome, valor, data, descricao, tipoRegistro);
 
             saldoService.atualizarSaldo(userExists, valor, tipoRegistro);
-            return repository.save(registro);
+            Registro registroSalvo = repository.save(registro);
+            return new RegistroResponse(registroSalvo);
         }
 
         public void deletarRegistro(long id){
@@ -46,9 +48,9 @@ import java.util.List;
             repository.delete(registro);
 
         }
-        public Registro buscarPorId(long id){
+        public RegistroResponse buscarPorId(long id){
             Registro registro = repository.findById(id).orElseThrow(()-> new RegistroNotFoundException());
-            return registro;
+            return new RegistroResponse(registro);
         }
         public Registro editar(long id, String nome, BigDecimal valor,  String descricao, String data,  TipoRegistroDTO tipoRegistroDTO ){
             Registro registroExistente = buscarPorId(id);

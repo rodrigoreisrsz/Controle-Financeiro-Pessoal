@@ -2,10 +2,13 @@ package com.reis.financeiro.controllers;
 
 
 import com.reis.financeiro.dto.request.RegistroCreateDTO;
+import com.reis.financeiro.dto.response.RegistroResponse;
+import com.reis.financeiro.dto.response.UserResponse;
 import com.reis.financeiro.entities.Registro;
 import com.reis.financeiro.service.RegistroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,13 +30,14 @@ public class RegistroController {
     }
 
     @GetMapping("/{id}")
-    public Registro buscaPorId(@PathVariable  int id){
-        return service.buscarPorId(id);
+    public ResponseEntity<RegistroResponse> buscaPorId(@PathVariable  int id){
+        RegistroResponse response = service.buscarPorId(id);
+        return ResponseEntity.ok(response);
     }
     @PostMapping
-    public Registro criar(@RequestBody @Valid RegistroCreateDTO registroCreate){
-
-        return service.adicionarRegistro(registroCreate.getUserId(), registroCreate.getNome(),  registroCreate.getValor(), registroCreate.getDescricao(), registroCreate.getData(), registroCreate.getTipoRegistro());
+    public ResponseEntity<RegistroResponse> criar(@RequestBody @Valid RegistroCreateDTO registroCreate){
+        RegistroResponse response = service.adicionarRegistro(registroCreate.getUserId(), registroCreate.getNome(),  registroCreate.getValor(), registroCreate.getDescricao(), registroCreate.getData(), registroCreate.getTipoRegistro());
+        return ResponseEntity.ok(response);
     }
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable int id){
