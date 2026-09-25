@@ -29,6 +29,7 @@ public class RegistroController {
     }
     @PostMapping
     public Registro criar(@RequestBody @Valid RegistroCreateDTO registroCreate){
+
         return service.adicionarRegistro(registroCreate.getUserId(), registroCreate.getNome(),  registroCreate.getValor(), registroCreate.getDescricao(), registroCreate.getData(), registroCreate.getTipoRegistro());
     }
     @DeleteMapping("/{id}")
