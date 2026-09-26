@@ -11,14 +11,14 @@ public class RegistroResponse {
     private String nome;
     private BigDecimal valor;
     private String data;
-    private String desricao;
+    private String descricao;
 
     public RegistroResponse(Registro registroSalvo) {
         this.id = registroSalvo.getId();
         this.nome = registroSalvo.getNome();
         this.valor = registroSalvo.getValor();
         this.data = registroSalvo.getData();
-        this.desricao = registroSalvo.getDescricao();
+        this.descricao = registroSalvo.getDescricao();
     }
 
 

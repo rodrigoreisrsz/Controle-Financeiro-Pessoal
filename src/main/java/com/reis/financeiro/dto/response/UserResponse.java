@@ -6,17 +6,16 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 
-@Entity
+
 public class UserResponse {
-    @Id
-    @Positive
+
     private Long id;
-    @NotBlank
     private String name;
 
 
     public UserResponse(User user) {
         this.name = user.getName();
+        this.id = user.getId();;
     }
 
     public UserResponse() {

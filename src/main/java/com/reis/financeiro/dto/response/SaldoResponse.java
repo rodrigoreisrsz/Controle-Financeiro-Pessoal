@@ -9,17 +9,13 @@ import java.math.BigDecimal;
 public class SaldoResponse {
     @Id
     private Long id;
-    private String nome;
-    private BigDecimal valor;
-    private String descricao;
-    private String data;
+    private BigDecimal saldo;
 
-    public SaldoResponse(Long id, String nome, String descricao, BigDecimal valor, String data) {
+
+    public SaldoResponse(Long id,  BigDecimal saldo) {
         this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.valor = valor;
-        this.data = data;
+        this.saldo = saldo;
+
     }
 
     public SaldoResponse() {

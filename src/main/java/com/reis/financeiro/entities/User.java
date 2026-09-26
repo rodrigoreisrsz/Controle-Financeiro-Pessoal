@@ -12,7 +12,6 @@ public class User  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @JsonIgnore
     private String password;
 
     public User(Long id, String name, String password) {
@@ -37,6 +36,7 @@ public class User  {
         this.name = name;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
