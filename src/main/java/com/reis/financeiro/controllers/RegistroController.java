@@ -3,7 +3,6 @@ package com.reis.financeiro.controllers;
 
 import com.reis.financeiro.dto.request.RegistroCreateDTO;
 import com.reis.financeiro.dto.response.RegistroResponse;
-import com.reis.financeiro.dto.response.UserResponse;
 import com.reis.financeiro.entities.Registro;
 import com.reis.financeiro.service.RegistroService;
 import jakarta.validation.Valid;
@@ -23,7 +22,7 @@ public class RegistroController {
         this.service = service;
     }
     @GetMapping
-    public List<Registro>listar(@RequestParam Long userId){
+    public List<RegistroResponse>listar(@RequestParam Long userId){
 
 
         return service.listarRegistros(userId);

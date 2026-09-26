@@ -26,7 +26,7 @@ import java.util.List;
             this.userRepository = userRepository;
         }
 
-        public List<Registro> listarRegistros(Long userId){
+        public List<RegistroResponse> listarRegistros(Long userId){
             return repository.findByUserId(userId);
         }
 
