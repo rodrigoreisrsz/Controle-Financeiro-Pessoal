@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface RegistroRepository extends JpaRepository<Registro, Long> {
-    List<RegistroResponse> findByUserId(Long userId);
+    List<Registro> findByUserId(Long userId);
 
 
 }

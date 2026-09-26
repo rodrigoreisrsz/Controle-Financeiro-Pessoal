@@ -1,6 +1,7 @@
 package com.reis.financeiro.service;
 
 import com.reis.financeiro.dto.response.RegistroResponse;
+import com.reis.financeiro.dto.response.UserResponse;
 import com.reis.financeiro.entities.Registro;
 import com.reis.financeiro.entities.TipoRegistroDTO;
 import com.reis.financeiro.entities.User;
@@ -27,7 +28,10 @@ import java.util.List;
         }
 
         public List<RegistroResponse> listarRegistros(Long userId){
-            return repository.findByUserId(userId);
+            List<RegistroResponse> registros = repository.findByUserId(userId).stream()
+                    .map(r -> new RegistroResponse(r))
+                    .toList();
+            return registros;
         }
 
         public RegistroResponse adicionarRegistro(Long userId, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro){
@@ -69,8 +73,8 @@ import java.util.List;
             registroExistente.setValor(valor);
             registroExistente.setDescricao(descricao);
             registroExistente.setTipoRegistro(tipoRegistroDTO);
+            saldoService.atualizarSaldo(registroExistente.getUser(), valor, tipoRegistroDTO);
             repository.save(registroExistente);
-
             return new RegistroResponse(registroExistente);
 
 
