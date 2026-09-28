@@ -1,5 +1,6 @@
 package com.reis.financeiro.service;
 
+import com.reis.financeiro.dto.response.CofreResponse;
 import com.reis.financeiro.entities.Cofre;
 import com.reis.financeiro.entities.User;
 import com.reis.financeiro.repository.CofreRepository;
@@ -22,9 +23,20 @@ public class CofreService {
         this.userRepository = userRepository;
         this.saldoRepository = saldoRepository;
     }
-    public Cofre criarCofre(Long userId, String nome, BigDecimal valor){
+    public CofreResponse criarCofre(Long userId, String nome, BigDecimal meta, BigDecimal deposito){
         User userExists = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User inexistente."));
-        Cofre cofre = new Cofre(nome, valor);
+        Cofre cofre = new Cofre(userExists, nome, meta, deposito);
         repository.save(cofre);
+        return new CofreResponse(cofre);
     }
+    public CofreResponse editar(Long id, String nome, BigDecimal meta){
+        Cofre cofreExistente = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cofre não encontrado."));
+
+        cofreExistente.setNome(nome);
+        cofreExistente.setMeta(meta);
+        repository.save(cofreExistente);
+        return new CofreResponse(cofreExistente);
+    }
+
 }
