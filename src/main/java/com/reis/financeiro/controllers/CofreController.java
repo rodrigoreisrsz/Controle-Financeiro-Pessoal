@@ -20,8 +20,8 @@ public class CofreController {
     public CofreController(CofreService service) {
         this.service = service;
     }
-
-    public List<CofreResponse> listar(@RequestParam long userId){
+    @GetMapping
+    public List<CofreResponse> listarMetas(@RequestParam long userId){
         return service.listarMetas(userId);
     }
     @GetMapping("/{id}")
