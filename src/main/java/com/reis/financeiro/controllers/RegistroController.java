@@ -29,7 +29,7 @@ public class RegistroController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RegistroResponse> buscaPorId(@PathVariable  int id){
+    public ResponseEntity<RegistroResponse> buscaPorId(@PathVariable  long id){
         RegistroResponse response = service.buscarPorId(id);
         return ResponseEntity.ok(response);
     }

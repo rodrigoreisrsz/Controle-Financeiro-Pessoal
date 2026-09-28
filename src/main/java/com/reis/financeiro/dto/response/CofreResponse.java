@@ -9,11 +9,11 @@ import java.math.BigDecimal;
 public class CofreResponse {
     private long id;
     private String nome;
-    private BigDecimal total;
+    private BigDecimal meta;
 
     public CofreResponse(Cofre cofre) {
         this.id = cofre.getId();
         this.nome = cofre.getNome();
-        this.total = cofre.getTotal();
+        this.meta = cofre.getMeta();
     }
 }

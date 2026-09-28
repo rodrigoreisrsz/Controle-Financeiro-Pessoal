@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class CofreService {
@@ -22,6 +23,17 @@ public class CofreService {
         this.repository = repository;
         this.userRepository = userRepository;
         this.saldoRepository = saldoRepository;
+    }
+    public List<CofreResponse> listarMetas(Long userId){
+        List<CofreResponse> metas = repository.findById(userId).stream()
+                .map(m -> new CofreResponse(m))
+                .toList();
+        return metas;
+    }
+    public CofreResponse buscarPorId(long id){
+        Cofre cofre = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Este cofre de metas não existe."));
+        return  new CofreResponse(cofre);
     }
     public CofreResponse criarCofre(Long userId, String nome, BigDecimal meta, BigDecimal deposito){
         User userExists = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User inexistente."));
@@ -37,6 +49,11 @@ public class CofreService {
         cofreExistente.setMeta(meta);
         repository.save(cofreExistente);
         return new CofreResponse(cofreExistente);
+    }
+    public void deletar(Long id){
+        Cofre cofre = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Este cofre de metas não existe."));
+        repository.delete(cofre);
     }
 
 }
