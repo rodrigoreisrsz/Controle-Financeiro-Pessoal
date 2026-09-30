@@ -18,15 +18,14 @@ public class Cofre {
     private User user;
     private String nome;
     private BigDecimal meta;
-    private BigDecimal deposito;
 
-    public Cofre(User user, String nome, BigDecimal meta, BigDecimal deposito) {
+
+    public Cofre(User user, String nome, BigDecimal meta) {
         this.user = user;
         this.nome = nome;
         this.meta = meta;
-        this.deposito = deposito;
     }
 
-    public Cofre() {
-    }
+
+   public Cofre(){}
 }

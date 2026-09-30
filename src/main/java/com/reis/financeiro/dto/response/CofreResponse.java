@@ -10,10 +10,12 @@ public class CofreResponse {
     private long id;
     private String nome;
     private BigDecimal meta;
+    private BigDecimal valorAtual;
 
     public CofreResponse(Cofre cofre) {
         this.id = cofre.getId();
         this.nome = cofre.getNome();
         this.meta = cofre.getMeta();
+        this.valorAtual = cofre.getValorAtual();
     }
 }
