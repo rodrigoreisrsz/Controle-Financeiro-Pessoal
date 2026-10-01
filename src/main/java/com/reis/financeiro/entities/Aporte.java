@@ -28,6 +28,6 @@ public class Aporte {
         this.data = data;
         this.cofre = cofre;
     }
-    public Aporte(){
+    public Aporte(Long cofreId, BigDecimal valor, LocalDate data, Cofre cofreExists){
     }
 }

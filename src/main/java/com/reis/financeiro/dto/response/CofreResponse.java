@@ -16,6 +16,6 @@ public class CofreResponse {
         this.id = cofre.getId();
         this.nome = cofre.getNome();
         this.meta = cofre.getMeta();
-        this.valorAtual = cofre.getValorAtual();
+
     }
 }

@@ -40,7 +40,7 @@ public class CofreController {
     }
     @PostMapping("/aportes")
     public ResponseEntity<CofreResponse> criarAporte(@RequestBody @Valid AporteCreateDTO aporteCreateDTO){
-        CofreResponse response = (CofreResponse) service.criarAporte(aporteCreateDTO.getCofreId(), aporteCreateDTO.getValor(), aporteCreateDTO.getData());
+        CofreResponse response =  service.criarAporte(aporteCreateDTO.getCofreId(), aporteCreateDTO.getValor(), aporteCreateDTO.getData());
         return  ResponseEntity.ok(response);
     }
     @PutMapping("/{id}")

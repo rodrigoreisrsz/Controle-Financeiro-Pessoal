@@ -15,6 +15,7 @@ public class Cofre {
     private long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "cofre")
     private User user;
     private String nome;
     private BigDecimal meta;

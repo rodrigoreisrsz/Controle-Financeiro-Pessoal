@@ -61,10 +61,16 @@ public class CofreService {
         repository.delete(cofre);
     }
     public CofreResponse criarAporte(Long cofreId, BigDecimal valor, LocalDate data){
-        Cofre cofreExists = (Cofre) aporteRepository.findByCofreId(cofreId);
+        Cofre cofreExists =  repository.findById(cofreId).orElseThrow(() -> new RuntimeException("Este cofre de metas não existe."));
         Aporte aporte = new Aporte(valor, data, cofreExists);
         aporteRepository.save(aporte);
-        return new CofreResponse(aporte);
+        return new CofreResponse(aporte.getCofre());
+
+    }
+    public void deletarAporte(Long cofreId, Aporte aporte){
+        Cofre cofreExists =  repository.findById(cofreId).orElseThrow(() -> new RuntimeException("Este cofre de metas não existe."));
+        Aporte aporteExists = aporteRepository.findById(aporte.getId()).orElseThrow(() -> new RuntimeException("Este aporte não existe"));
+        repository.delete(cofreExist);
 
     }
 
