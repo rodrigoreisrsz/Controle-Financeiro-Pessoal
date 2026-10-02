@@ -6,18 +6,17 @@ import com.reis.financeiro.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final RegistroService registroService;
 
     @Autowired
 
-    public UserService(UserRepository userRepository, RegistroService registroService) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.registroService = registroService;
+
     }
 
     public UserResponse cadastrar(String name, String password){

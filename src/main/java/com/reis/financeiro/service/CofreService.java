@@ -30,7 +30,7 @@ public class CofreService {
         this.aporteRepository = aporteRepository;
     }
     public List<CofreResponse> listarMetas(Long userId){
-        List<CofreResponse> metas = repository.findById(userId).stream()
+        List<CofreResponse> metas = repository.findByUserId(userId).stream()
                 .map(m -> new CofreResponse(m))
                 .toList();
         return metas;
@@ -67,10 +67,9 @@ public class CofreService {
         return new CofreResponse(aporte.getCofre());
 
     }
-    public void deletarAporte(Long cofreId, Aporte aporte){
-        Cofre cofreExists =  repository.findById(cofreId).orElseThrow(() -> new RuntimeException("Este cofre de metas não existe."));
+    public void deletarAporte(Aporte aporte){
         Aporte aporteExists = aporteRepository.findById(aporte.getId()).orElseThrow(() -> new RuntimeException("Este aporte não existe"));
-        repository.delete(cofreExist);
+        aporteRepository.delete(aporteExists);
 
     }
 

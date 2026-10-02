@@ -2,6 +2,7 @@ package com.reis.financeiro.entities;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 public class Registro {
@@ -14,11 +15,12 @@ public class Registro {
     private String nome;
     private BigDecimal valor;
     private String descricao;
-    private String data;
-    private TipoRegistroDTO tipoRegistro;
+    private LocalDate data;
+    @Enumerated(EnumType.STRING)
+    private TipoRegistro tipoRegistro;
 
 
-    public Registro(User user, String nome, BigDecimal valor, String descricao, String data, TipoRegistroDTO tipoRegistro) {
+    public Registro(User user, String nome, BigDecimal valor, String descricao, LocalDate data, TipoRegistro tipoRegistro) {
         this.user = user;
         this.nome = nome;
         this.valor = valor;
@@ -75,19 +77,19 @@ public class Registro {
         this.descricao = descricao;
     }
 
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
-    public TipoRegistroDTO getTipoRegistro() {
+    public TipoRegistro getTipoRegistro() {
         return tipoRegistro;
     }
 
-    public void setTipoRegistro(TipoRegistroDTO tipoRegistro) {
+    public void setTipoRegistro(TipoRegistro tipoRegistro) {
         this.tipoRegistro = tipoRegistro;
     }
 

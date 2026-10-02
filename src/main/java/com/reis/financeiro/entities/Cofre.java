@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,10 +17,13 @@ public class Cofre {
     private long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @OneToMany(mappedBy = "cofre")
+
     private User user;
     private String nome;
     private BigDecimal meta;
+
+    @OneToMany(mappedBy = "cofre")
+    private List<Aporte> aportes = new ArrayList<>();
 
 
     public Cofre(User user, String nome, BigDecimal meta) {
