@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
     @Service
@@ -33,9 +34,9 @@ import java.util.List;
             return registros;
         }
 
-        public RegistroResponse adicionarRegistro(Long userId, String nome, BigDecimal valor, String descricao, String data, TipoRegistro tipoRegistro){
+        public RegistroResponse adicionarRegistro(Long userId, String nome, BigDecimal valor, String descricao, LocalDate data, TipoRegistro tipoRegistro){
             User userExists = userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User inexistente."));
-            Registro registro = new Registro(userExists, nome, valor, data, descricao, tipoRegistro);
+            Registro registro = new Registro(userExists, nome, valor,  descricao, data, tipoRegistro);
 
             saldoService.atualizarSaldo(userExists, valor, tipoRegistro);
             Registro registroSalvo = repository.save(registro);
@@ -57,7 +58,7 @@ import java.util.List;
             Registro registro = repository.findById(id).orElseThrow(()-> new RegistroNotFoundException());
             return new RegistroResponse(registro);
         }
-        public RegistroResponse editar(long id, String nome, BigDecimal valor,  String descricao, String data,  TipoRegistro tipoRegistroDTO ){
+        public RegistroResponse editar(long id, String nome, BigDecimal valor, String descricao, LocalDate data, TipoRegistro tipoRegistroDTO ){
             Registro registroExistente = repository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Registro não encontrado."));
 

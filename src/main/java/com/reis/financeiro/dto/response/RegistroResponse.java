@@ -4,13 +4,14 @@ import com.reis.financeiro.entities.Registro;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 public class RegistroResponse {
     private Long id;
     private String nome;
     private BigDecimal valor;
-    private String data;
+    private LocalDate data;
     private String descricao;
 
     public RegistroResponse(Registro registroSalvo) {

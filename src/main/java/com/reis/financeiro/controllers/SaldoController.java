@@ -26,9 +26,9 @@ public class SaldoController {
     @GetMapping
     public ResponseEntity<SaldoResponse> consultarSaldo(@RequestParam Long userId){
         Saldo saldo = service.buscaOuCriaSaldo(userId);
-        SaldoResponse response = service.buscaOuCriaSaldo(userId);
+        SaldoResponse saldoResponse = new SaldoResponse(saldo);
 
-        return ResponseEntity.ok(saldo);
+        return ResponseEntity.ok(saldoResponse);
     }
 
 }

@@ -35,7 +35,6 @@ public class SaldoService {
             repository.save(saldo);
             return saldo;
         }
-        return new SaldoResponse(saldoExistente);
 
 
     }
