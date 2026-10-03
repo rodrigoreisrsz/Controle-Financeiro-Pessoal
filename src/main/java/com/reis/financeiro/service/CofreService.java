@@ -72,5 +72,16 @@ public class CofreService {
         aporteRepository.delete(aporteExists);
 
     }
+    public BigDecimal calcularTotal(Long cofreId){
+        List<Aporte> aportes = aporteRepository.findByCofreId(cofreId).stream()
+                .toList();
+        BigDecimal valorTotal = aportes.stream()
+                .map(Aporte::getValor)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return valorTotal;
+    }
 
+    // buscar toda a lista de aportes do user
+    // iterar sobre cada uma e somar ao proximo valor
+    // retornar uma nova lista ou retorna o variavel valor total
 }
