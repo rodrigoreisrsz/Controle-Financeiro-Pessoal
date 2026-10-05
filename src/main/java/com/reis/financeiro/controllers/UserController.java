@@ -1,5 +1,6 @@
 package com.reis.financeiro.controllers;
 
+import com.reis.financeiro.dto.request.LoginDTO;
 import com.reis.financeiro.dto.request.UserCreateDTO;
 import com.reis.financeiro.dto.response.UserResponse;
 import com.reis.financeiro.entities.User;
@@ -26,8 +27,8 @@ public class UserController {
         //return userService.cadastrar(userCreate.getName(), userCreate.getPassword());
     }
     @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@RequestBody UserCreateDTO userCreateDTO){
-        UserResponse response = userService.login(userCreateDTO.getEmail(), userCreateDTO.getPassword());
+    public ResponseEntity<UserResponse> login(@RequestBody LoginDTO loginDTO){
+        UserResponse response = userService.login(loginDTO.getEmail(), loginDTO.getPassword());
         return ResponseEntity.ok(response);
     }
 }
