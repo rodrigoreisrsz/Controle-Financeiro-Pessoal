@@ -7,6 +7,7 @@ import com.reis.financeiro.entities.Registro;
 import com.reis.financeiro.service.RegistroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +35,10 @@ public class RegistroController {
         return ResponseEntity.ok(response);
     }
     @PostMapping
+    //@ResponseStatus(HttpStatus.CREATED) tbm retona 201 CREATED
     public ResponseEntity<RegistroResponse> criar(@RequestBody @Valid RegistroCreateDTO registroCreate){
         RegistroResponse response = service.adicionarRegistro(registroCreate.getUserId(), registroCreate.getNome(),  registroCreate.getValor(), registroCreate.getDescricao(), registroCreate.getData(), registroCreate.getTipoRegistro());
-        return ResponseEntity.ok(response);
+        return new ResponseEntity(response, HttpStatus.CREATED); // retorna 201 - CREATED
     }
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable int id){

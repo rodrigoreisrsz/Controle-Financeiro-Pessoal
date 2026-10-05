@@ -19,13 +19,13 @@ public class UserService {
 
     }
 
-    public UserResponse cadastrar(String name, String password){
-        User user = new User(name, password);
+    public UserResponse cadastrar(String name, String email, String password){
+        User user = new User(name, email, password);
         User userSalvo = userRepository.save(user);
         return new UserResponse(userSalvo);
     }
-    public UserResponse login(String name, String password){
-        User user = userRepository.findByName(name);
+    public UserResponse login(String email, String password){
+        User user = userRepository.findByEmail(email);
         if(user == null){
             throw new RuntimeException("Usuário inexistente.");
         }

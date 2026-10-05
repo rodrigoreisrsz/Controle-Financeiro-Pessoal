@@ -3,6 +3,7 @@ package com.reis.financeiro.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,7 +24,8 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String name;
     @JsonIgnore
-    @Column(nullable = false)
+    @Column(unique = true)
+    @Email
     private String email;
     @JsonIgnore
     @Column(nullable = false)
@@ -35,8 +37,9 @@ public class User implements UserDetails {
         this.email = email;
         this.password = password;
     }
-    public User(String name, String password){
+    public User(String name, String email, String password){
         this.name = name;
+        this.email = email;
         this.password = password;
     }
 

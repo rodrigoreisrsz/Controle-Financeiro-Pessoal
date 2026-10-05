@@ -21,7 +21,7 @@ public class UserController {
     }
     @PostMapping
     public ResponseEntity<UserResponse> cadastrar(@RequestBody @Valid UserCreateDTO userCreate){
-        UserResponse response = userService.cadastrar(userCreate.getName(), userCreate.getPassword());
+        UserResponse response = userService.cadastrar(userCreate.getName(), userCreate.getEmail(), userCreate.getPassword());
         return ResponseEntity.ok(response);
         //return userService.cadastrar(userCreate.getName(), userCreate.getPassword());
     }
