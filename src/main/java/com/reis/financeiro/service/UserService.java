@@ -6,6 +6,7 @@ import com.reis.financeiro.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 
 
 @Service
@@ -25,14 +26,14 @@ public class UserService {
         return new UserResponse(userSalvo);
     }
     public UserResponse login(String email, String password){
-        User user = userRepository.findByEmail(email);
-        if(user == null){
+        Optional<User> user = userRepository.findByEmail(email);
+        if(user.isEmpty()){
             throw new RuntimeException("Usuário inexistente.");
         }
-        if(!password.equals(user.getPassword())){
+        if(!password.equals(user.get().getPassword())){
             throw new RuntimeException("Senha inválida");
         }
-        return new UserResponse(user);
+        return new UserResponse(user.orElse(null));
     }
 
 }
