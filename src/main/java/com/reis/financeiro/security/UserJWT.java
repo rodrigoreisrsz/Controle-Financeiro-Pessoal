@@ -7,12 +7,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
+
 
 public class UserJWT implements UserDetails {
-    private final Optional<User> user;
+    private final User user;
 
-    public UserJWT(Optional<User> user) {
+    public UserJWT(User user) {
         this.user = user;
     }
 
@@ -23,7 +23,7 @@ public class UserJWT implements UserDetails {
 
     @Override
     public  String getPassword() {
-        return user.orElse(new User()).getPassword();
+        return user.getPassword();
     }
 
     @Override

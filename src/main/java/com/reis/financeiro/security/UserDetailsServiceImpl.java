@@ -11,21 +11,24 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @Component
-public class UserDetailsimpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private final UserRepository repository;
 
-    public UserDetailsimpl(UserRepository repository) {
+    public UserDetailsServiceImpl(UserRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = repository.findByEmail(username);
-        if(user.isEmpty()){
+
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException("Usuario nao encontrado");
         }
-        return new UserJWT(user);
+        User foundUser = user.get();
+
+        return new UserJWT(foundUser);
     }
 }
