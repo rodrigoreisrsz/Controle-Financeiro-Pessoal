@@ -50,4 +50,8 @@ public class UserJWT implements UserDetails {
     public @Nullable String getPassword() {
         return user.getPassword();
     }
+
+    public User getUser() {
+        return user;
+    }
 }
