@@ -39,8 +39,8 @@ public class UserService {
         String password = passwordEncoder.encode(user.getPassword());
         String name = user.getName();
         String email = user.getEmail();
-        new User(name, email, password);
-        User userSalvo = userRepository.save(user);
+        User userNovo = new User(name, email, password);
+        User userSalvo = userRepository.save(userNovo);
         return new UserResponse(userSalvo);
     }
     public UserResponse login(String email, String password){

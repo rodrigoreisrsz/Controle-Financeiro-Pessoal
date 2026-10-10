@@ -1,6 +1,6 @@
 package com.reis.financeiro.dto.request;
 
-import com.reis.financeiro.entities.User;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserCreateDTO extends User {
+public class UserCreateDTO {
     @Positive
     private Long id;
     @NotBlank

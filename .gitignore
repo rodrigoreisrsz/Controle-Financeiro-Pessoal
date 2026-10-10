@@ -36,3 +36,6 @@ build/
 .env
 .class
 .jar
+.env
+.env.*
+!.env.example

@@ -16,7 +16,7 @@ import java.util.Date;
 public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
-    @Value("${api.secrurity.token.expiration}")
+    @Value("${api.security.token.expiration}")
     private Long expiration;
     private Key getSignInKey(){
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
